@@ -2,7 +2,7 @@
 cd
 git config --global http.sslVerify false
 git clone https://bitbucket.org/imt-mobisyst/mb6-tbot tbot
-git -C tbot/ checkout dev-guillaume
+#git -C tbot/ checkout dev-guillaume
 #bash tbot/script/install_dependencies.sh
 
 #sudo usermod -a -G dialout $USER
