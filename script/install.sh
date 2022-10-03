@@ -1,9 +1,17 @@
 #!/usr/bin/env bash
+
+# Clonage
+#----------------------------
 cd
 git config --global http.sslVerify false
 git clone https://bitbucket.org/imt-mobisyst/mb6-tbot tbot
-#git -C tbot/ checkout dev-guillaume
-#bash tbot/script/install_dependencies.sh
+cd ~/tbot
+#git checkout dev-guillaume
+
+# Genrations
+#----------------------------
+bash script/install-docker.sh
+bash script/generate-docker-images.sh
 
 #sudo usermod -a -G dialout $USER
 #roscore > roscore.log &
@@ -12,4 +20,4 @@ git clone https://bitbucket.org/imt-mobisyst/mb6-tbot tbot
 #bash src/tbot/script/install_simulation.sh
 #catkin_make
 
-echo ">> TBOT (on branch: dev-guillaume) installed in ~/tbot <<"
+echo ">> TBOT (on branch: master) installed in ~/tbot <<"

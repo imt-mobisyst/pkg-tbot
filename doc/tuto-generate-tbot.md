@@ -1,58 +1,17 @@
 # MobiSyst - TBot
 
-This project is a ROS Catkin package that includes usefull elements for turtlebot2 robots in the IMT Nord-Europe configuration (tbot).
+This project is a ROS Catkin package that includes usefull elements for turtlebot2 robots.
 
 Last system version: **Ubuntu 20.04 lts** / **ROS neotic**.
-
-## Links
-
-A voir pour creer une image Pi3 et Pi4 à notre image: [custom-raspberry-pi-image](https://opensource.com/article/21/7/custom-raspberry-pi-image). Cependant,l'*Imager* de rasberry fait de base pas mal le taff.
-
-A voir pour installer Docker sur [docs.docker.com](https://docs.docker.com/engine/install/ubuntu/).
 
 Thanks:
 
 - [gaunthan for Turtlebot2 on Melodic](https://github.com/gaunthan/Turtlebot2-On-Melodic)
 - [TheConstruct](https://www.theconstructsim.com/) the virtualisation and the simulation environment they provide.
 
-
 ## Installation
 
-The `tbot` project requires several dependencies mostly relying on Docker and ROS to load turtlebot-kobuki ROS driver in a virtual environment and add some usefull ROS packages (laser, ros2-bridge...). 
-
-However to shortcut the installation process you can execute the install script (supose that ROS Neotic is already installed): 
-
-**In short:** [./script/install.sh](install.sh)
-
-```sh
-curl -k https://bitbucket.org/imt-mobisyst/mb6-tbot/raw/master/script/install.sh | bash
-```
-
-_WARNING_: The default install comme with simulation packages.
-
-Otherwise you can go throut the step-by-step installation:
-
-
-
-
-
-
----
-
-## Installation
-
-The `tbot` project requires several dependencies mostly relying on ROS packages befor to be build.
-However to shortcut the installation process you can execute the install script (supose that ROS Neotic is already installed): 
-
-**In short:** [./script/install_apt_deps.sh](install.sh)
-
-```sh
-curl https://bitbucket.org/imt-mobisyst/mb6-tbot/raw/dev-guillaume/script/install.sh | bash
-```
-
-_WARNING_: The default install comme with simulation packages.
-
-Otherwise you can go throut the step-by-step installation:
+**In short:** `install_apt_deps.sh`
 
 ### Dependencies
 
@@ -63,24 +22,17 @@ Otherwise you can go throut the step-by-step installation:
 Then it depends also on several packages not installed with the desktop version of ROS:
 
 ```bash
+./install_apt_deps.sh
+# or
 sudo apt update
-# Kobuki dpds :
-sudo apt install -y \
-    ros-noetic-ecl-exceptions \
+sudo apt install -y ros-noetic-ecl-exceptions \
     ros-noetic-ecl-threads \
     ros-noetic-ecl-geometry \
     ros-noetic-ecl-streams \
-    ros-noetic-ecl-eigen \
     ros-noetic-kobuki-* \
-    ros-noetic-angles \
     ros-noetic-depthimage-to-laserscan \
     ros-noetic-joy \
     ros-noetic-urg-node \
-    ros-noetic-urdf \
-    libyaml-cpp*
-
-# Kobuki_gazebo dpds :
-sudo apt install -y \
     ros-noetic-gazebo-ros \
     ros-noetic-gazebo-plugins \
     ros-noetic-depth-image-proc
@@ -90,13 +42,14 @@ To finalize kobuki installation (http://wiki.ros.org/kobuki/Tutorials/Installati
 
 ```bash
 sudo usermod -a -G dialout $USER
-roscore > roscore.log &
+roscore &
 rosrun kobuki_ftdi create_udev_rules
 ```
 
 This script normally allows udev to recgnize a connected kobuki and to install it on `/dev/kobuki` when the usb connector is plugged to the computer.
 
 Restart the machine to have everything configured properly.
+
 
 ### TBot
 
@@ -118,13 +71,13 @@ or
 export GIT_SSL_NO_VERIFY=1
 ```
 
-Build-it: (2 or 3 times to solve somme recursive dependencies...)
+Build-it:
 
 ```bash
 catkin_make
+source devel/setup.bash
 ```
 
-for a selection of packahes: `catkin_make --only-pkg-with-deps kobuki_safety_controller`
 
 ### Hello World:
 
@@ -133,7 +86,6 @@ Switch-on a turtlebot and connect it to the machine.
 Start ROS and the robot equiped with the hokuyo laser:
 
 ```bash
-source devel/setup.bash
 roslaunch tbot_bringup start.launch
 ```
 
@@ -145,23 +97,10 @@ roslaunch tbot_bringup teleop.launch
 
 Stop the programs (`ctrl-c`).
 
-## Simulation:
-
-
-
-## Laser:
-
-
 
 ## RealSense Camera:
 
 TBot perception integrate a RealSense Camera
-
-```sh
-bash ./script/install_realsense.sh
-```
-
-or :
 
 ### Install the RealSense
 
@@ -233,6 +172,7 @@ roslaunch turtlebot_bringup minimal.launch
 ```
 
 Stop the programs (`ctrl-c`).
+
 
 For a complete configuration: (turtlebot + laser + realsens...):
 
