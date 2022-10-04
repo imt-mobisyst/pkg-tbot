@@ -16,207 +16,44 @@ The `tbot` project requires several dependencies mostly relying on Docker and RO
 
 However to shortcut the installation process you can execute the install script (supose that ROS Neotic is already installed): 
 
+
+**PiBot install:** 
+
+Tbot is designed to work on a Raspberry-Pi3. To configure the Pi3 beffore to install tbot,
+please refers to [./doc/install-pibot.md](install-pibot.md).
+Otherwise you can overpass this step.
+
 **In short:** [./script/install.sh](install.sh)
+
+By considering that curl and git are installed, you can just execute the folloowing command in your favorit shell:
 
 ```sh
 curl -k https://bitbucket.org/imt-mobisyst/mb6-tbot/raw/master/script/install.sh | bash
 ```
 
-_WARNING_: The default install comme with simulation packages.
+This script will install dependencies, clone the repo, generate the docker image and compile the tbot packages.
 
-Otherwise you can go throut the step-by-step installation:
+**In detail:** 
 
-### Dependencies
+A detailled install porcedure is proposed here: [./doc/install.md](install.md).
 
-TBot Requires an Ubuntu/ROS machine with Docker and some other dependencies.
+**Extra:** 
 
-**Classical Ubuntu packages.**
-
-```sh
-sudo apt update
-sudo apt install -y git sshfs curl code build-essential
-```
-
-
-**ROS and Docker**
-
-Installation procedure:
-
-- [ROS](https://wiki.ros.org/noetic/Installation/Ubuntu) (script: [install-ros.sh](script/install-ros.sh))
-- [Docker](https://docs.docker.com/engine/install/ubuntu) (script: [install-docker.sh](script/install-docker.sh))
-
-
-**Some ROS packages.**
-
-Then it depends also on several packages not installed with the desktop version of ROS:
-
-```bash
-sudo apt update
-# tbot dpds :
-sudo apt install -y \
-    ros-noetic-depthimage-to-laserscan \
-    ros-noetic-joy \
-    ros-noetic-urg-node \
-    ros-noetic-urdf
-
-# gazebo dpds :
-sudo apt install -y \
-    ros-noetic-gazebo-ros \
-    ros-noetic-gazebo-plugins \
-    ros-noetic-depth-image-proc
-```
-
-To finalize kobuki installation (http://wiki.ros.org/kobuki/Tutorials/Installation)
-
-```bash
-sudo usermod -a -G dialout $USER
-roscore > roscore.log &
-rosrun kobuki_ftdi create_udev_rules
-```
-
-This script normally allows udev to recgnize a connected kobuki and to install it on `/dev/kobuki` when the usb connector is plugged to the computer.
-
-Restart the machine to have everything configured properly.
-
-
-### Tbot
-
-Clone this repo in your catkin directory:
-
-```bash
-cd $HOME/catkin_ws
-mkdir src # If necessary
-git clone https://bitbucket.org/imt-mobisyst/mb6-tbot src/mb6-tbot
-```
-
-Potentially the cloning process fail du to SSL verification. Try: 
-
-```sh
-git config --global http.sslverify false
-```
-or
-```sh
-export GIT_SSL_NO_VERIFY=1
-```
-
-Générate the docker-image: (script: [generate-docker-images](script/generate-docker-images.sh))
-
-tbot includes 2 images: **mb6u16**, a généric ROS image on top of a Ubuntu 16.04 (xenial) and **mb6u16:kobuki** with kobuki packages.
-
-```sh
-sudo docker build --tag mb6u16 docker-image/mb6u16/
-sudo docker build --tag mb6u16:kobuki docker-image/kobuki/
-```
-
-Then it is possoble to generate tbot packages:
-
-Build-it: (2 or 3 times to solve somme recursive dependencies...)
-
-```bash
-catkin_make
-```
-
-(for a selection of packahes: `catkin_make --only-pkg-with-deps kobuki_safety_controller`)
+Tbot can take advantage of different extra-dependancy, tically the Realsence-camera, the kokuyo laser range, simulation configuration...
+The install procedures and more information on [./doc/install-extra.md](install-extra.md).
 
 ## Getting started
 
 Start kobuki: 
 
-1. connect and switch-on the turtlebot-kobuki 
-2. start the docker: `./script/start-tbot.sh`
-
-
+1. Connect and switch-on the turtlebot-kobuki
+2. Start the docker: `./script/start-tbot.sh &`
+3. Teleop the robot: `rosrun teleop_twist_keyboard teleop_twist_keyboard.py cmd_vel:=/mobile_base/commands/velocity`
+4. Stop the teleop (`ctrl-c`).
 
 
 
 ---
-
-## Installation
-
-The `tbot` project requires several dependencies mostly relying on ROS packages befor to be build.
-However to shortcut the installation process you can execute the install script (supose that ROS Neotic is already installed): 
-
-**In short:** [./script/install_apt_deps.sh](install.sh)
-
-```sh
-curl https://bitbucket.org/imt-mobisyst/mb6-tbot/raw/dev-guillaume/script/install.sh | bash
-```
-
-_WARNING_: The default install comme with simulation packages.
-
-Otherwise you can go throut the step-by-step installation:
-
-### Dependencies
-
-**TBot Requires an Ubuntu/ROS machine.**
-
-- [Installation procedure](https://wiki.ros.org/noetic/Installation/Ubuntu)
-
-Then it depends also on several packages not installed with the desktop version of ROS:
-
-```bash
-sudo apt update
-# Kobuki dpds :
-sudo apt install -y \
-    ros-noetic-ecl-exceptions \
-    ros-noetic-ecl-threads \
-    ros-noetic-ecl-geometry \
-    ros-noetic-ecl-streams \
-    ros-noetic-ecl-eigen \
-    ros-noetic-kobuki-* \
-    ros-noetic-angles \
-    ros-noetic-depthimage-to-laserscan \
-    ros-noetic-joy \
-    ros-noetic-urg-node \
-    ros-noetic-urdf \
-    libyaml-cpp*
-
-# Kobuki_gazebo dpds :
-sudo apt install -y \
-    ros-noetic-gazebo-ros \
-    ros-noetic-gazebo-plugins \
-    ros-noetic-depth-image-proc
-```
-
-To finalize kobuki installation (http://wiki.ros.org/kobuki/Tutorials/Installation)
-
-```bash
-sudo usermod -a -G dialout $USER
-roscore > roscore.log &
-rosrun kobuki_ftdi create_udev_rules
-```
-
-This script normally allows udev to recgnize a connected kobuki and to install it on `/dev/kobuki` when the usb connector is plugged to the computer.
-
-Restart the machine to have everything configured properly.
-
-### TBot
-
-Clone this repo in your catkin directory:
-
-```bash
-cd $HOME/catkin_ws
-mkdir src # If necessary
-git clone https://bitbucket.org/imt-mobisyst/mb6-tbot src/mb6-tbot
-```
-
-Potentially the cloning process fail du to SSL verification. Try: 
-
-```sh
-git config --global http.sslverify false
-```
-or
-```sh
-export GIT_SSL_NO_VERIFY=1
-```
-
-Build-it: (2 or 3 times to solve somme recursive dependencies...)
-
-```bash
-catkin_make
-```
-
-for a selection of packahes: `catkin_make --only-pkg-with-deps kobuki_safety_controller`
 
 ### Hello World:
 
@@ -235,7 +72,6 @@ You can teleoperate the robot with the keyboard from a second terminal:
 roslaunch tbot_bringup teleop.launch
 ```
 
-Stop the programs (`ctrl-c`).
 
 ## Simulation:
 

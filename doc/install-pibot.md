@@ -20,8 +20,13 @@ Installer Raspberry pi imager
 Dans imager: 
 
 1. sélectionner une image Ubuntu Server 20.04 lts 64bit (other general-purpose OS).
-
-
+2. selectionner la carte SD
+3. dans paramétres: 
+    - hostname: pibot-00.local
+    - enable SSH with password auth.
+    - set username/passord: bot/bot 
+    - set lan: Pirate-INE/pine0kio
+4. ecrire la carte SD
 
 
 Configure the network (in `network-config` file)
