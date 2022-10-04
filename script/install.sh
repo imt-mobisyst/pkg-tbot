@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 
-# Dependencies
-#----------------------------
+echo "# Dependencies"
+echo "#----------------------------""
 sudo apt update
 sudo apt install -y git sshfs curl code build-essential
 
 
-# Clonage
-#----------------------------
+echo "# Clonage"
+echo "#----------------------------"
 cd
 git config --global http.sslVerify false
 git clone https://bitbucket.org/imt-mobisyst/mb6-tbot tbot
@@ -15,31 +15,30 @@ cd ~/tbot
 #git checkout dev-guillaume
 
 
-# ROS et Docker
-#----------------------------
+echo "# ROS et Docker"
+echo "#----------------------------"
 bash script/install-ros.sh
 bash script/install-docker.sh
 
 
-# Somes Packages
-#----------------------------
+echo "# Somes Packages"
+echo "#----------------------------"
 # tbot dpds :
 sudo apt install -y \
-    ros-noetic-depthimage-to-laserscan \
-    ros-noetic-joy \
-    ros-noetic-urg-node \
-    ros-noetic-urdf
+  ros-noetic-depthimage-to-laserscan \
+  ros-noetic-joy \
+  ros-noetic-urg-node \
+  ros-noetic-urdf
 # gazebo dpds :
-sudo apt install -y \
-    ros-noetic-gazebo-ros \
-    ros-noetic-gazebo-plugins \
-    ros-noetic-depth-image-proc
+# sudo apt install -y \
+#   ros-noetic-gazebo-ros \
+#   ros-noetic-gazebo-plugins \
+#   ros-noetic-depth-image-proc
 
 
-# Genrations
-#----------------------------
+echo "# Genrations"
+echo "#----------------------------"
 bash script/generate-docker-images.sh
-
 
 #sudo usermod -a -G dialout $USER
 #roscore > roscore.log &
