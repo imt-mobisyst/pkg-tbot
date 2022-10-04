@@ -1,5 +1,5 @@
 # Use an official ROS parent image
-FROM imop
+FROM mb6u16
 
 # Turtlebot: Kobuki
 RUN sh -c 'echo "deb http://packages.ros.org/ros/ubuntu xenial main" > /etc/apt/sources.list.d/ros-latest.list'
