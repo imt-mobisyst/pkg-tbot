@@ -84,6 +84,9 @@ In a second shell:
 roslaunch realsense2_camera rs_camera.launch
 ```
 
+```sh 
+roslaunch tbot_tools rviz_camera
+
 
 <!--
 Switch-on a turtlebot and connect it to the machine.
