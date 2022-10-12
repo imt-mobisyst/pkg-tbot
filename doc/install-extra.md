@@ -67,11 +67,25 @@ sudo apt-get install \
 Then you can launch the camera to publish the data into ROS topics:
 
 ```bash
-roslaunch realsense2-camera rs_camera.launch
+roslaunch realsense2_camera rs_camera.launch
 ```
 
 ### Start a robot with the realsense
 
+In a first shell::
+
+```sh
+./script/start-tbot.sh
+```
+
+In a second shell:
+
+```sh
+roslaunch realsense2_camera rs_camera.launch
+```
+
+
+<!--
 Switch-on a turtlebot and connect it to the machine.
 
 Start ROS with the robot:
@@ -101,4 +115,4 @@ roslaunch tbot_gazebo spawn_tbot.launch
 ```bash
 roslaunch larm challenge-3.launch
 ```
-
+-->
