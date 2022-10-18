@@ -19,8 +19,7 @@ However to shortcut the installation process you can execute the install script 
 
 **PiBot install:** 
 
-Tbot is designed to work on a Raspberry-Pi3. To configure the Pi3 beffore to install tbot,
-please refers to [./doc/install-pibot.md](install-pibot.md).
+Tbot is designed to work on a Raspberry-Pi3. To configure the Pi3 before to install tbot, please refers to [mb6-playload](https://www.bitbucket.org/imt-mobisyst/mb6-playload) project.
 Otherwise you can overpass this step.
 
 **In short:** [./script/install.sh](install.sh)
