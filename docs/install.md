@@ -20,8 +20,8 @@ sudo apt install -y git sshfs curl code build-essential
 
 Installation procedure:
 
-- [ROS](https://wiki.ros.org/noetic/Installation/Ubuntu) (script: [install-ros.sh](script/install-ros.sh))
-- [Docker](https://docs.docker.com/engine/install/ubuntu) (script: [install-docker.sh](script/install-docker.sh))
+- [ROS](https://wiki.ros.org/noetic/Installation/Ubuntu) (script: [install-ros.sh](../script/install-ros.sh))
+- [Docker](https://docs.docker.com/engine/install/ubuntu) (script: [install-docker.sh](../script/install-docker.sh))
 
 
 **Some ROS packages.**
@@ -80,6 +80,14 @@ tbot includes 2 images: **mb6u16**, a généric ROS image on top of a Ubuntu 16.
 sudo docker build --tag mb6u16 docker-image/mb6u16/
 sudo docker build --tag mb6u16:kobuki docker-image/kobuki/
 ```
+
+Authorize the user to launch docker images without passwords:
+
+```sh
+echo "$USER        ALL=(ALL:ALL) NOPASSWD: /usr/bin/docker run" > 36-tbot-docker
+sudo chown root:root 36-tbot-docker
+sudo mv 36-tbot-docker /etc/sudoers.d/
+``
 
 Then it is possoble to generate tbot packages:
 

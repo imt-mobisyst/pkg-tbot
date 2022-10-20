@@ -1,0 +1,11 @@
+# tbot as a Service
+[Unit]
+Description=start tbot ros node
+
+[Service]
+Type=forking
+ExecStart=/home/bot/tbot/script/start-tbot.sh
+RemainAfterExit=true
+
+[Install]
+WantedBy=multi-user.target
