@@ -1,5 +1,6 @@
 # Extra dependencies:
 
+About somme extra materials and ROSPackages:
 
 ## RealSense Camera:
 
@@ -51,10 +52,6 @@ sudo apt install autoconf dh-autoreconf libudev-dev
 ```
 
 Mais bon ça ne marche pas...
-
-### Install instruction Bis
-
-* [thrid linux instruction](https://dev.intelrealsense.com/docs/compiling-librealsense-for-linux-ubuntu-guide)
 
 
 ### RealSense on ROS

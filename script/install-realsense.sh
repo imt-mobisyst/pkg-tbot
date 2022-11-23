@@ -11,10 +11,10 @@ sudo apt install -y \
     librealsense2-dbg
 
 ## In ROS:
-sudo apt install -y \
-    ros-noetic-librealsense2 \
-    ros-noetic-realsense2-camera \
-    ros-noetic-realsense2-description
-    ros-noetic-depthimage-to-laserscan \
-    ros-noetic-rqt \
-    ros-noetic-rqt-image-view
+#sudo apt install -y \
+#    ros-noetic-librealsense2 \
+#    ros-noetic-realsense2-camera \
+#    ros-noetic-realsense2-description
+#    ros-noetic-depthimage-to-laserscan \
+#    ros-noetic-rqt \
+#    ros-noetic-rqt-image-view

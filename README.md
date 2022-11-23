@@ -19,6 +19,9 @@ However to shortcut the installation process you can execute the install script 
 By considering that curl and git are installed, you can just execute the folloowing command in your favorit shell:
 
 ```sh
+sudo apt update
+sudo apt install openssh-server curl
+# Potentially: log with ssh
 curl -k https://bitbucket.org/imt-mobisyst/mb6-tbot/raw/master/script/install.sh | bash
 ```
 
@@ -32,6 +35,14 @@ A detailled install porcedure is proposed here: [./doc/install.md](install.md).
 
 **Tbot** can take advantage of different extra-dependancy, tically the Realsence-camera, the kokuyo laser range, simulation configuration...
 The install procedures and more information on [./doc/install-extra.md](install-extra.md).
+
+**In short:**
+
+```sh
+cd tbot
+./script/install-extra
+```
+
 
 ## Getting started
 
