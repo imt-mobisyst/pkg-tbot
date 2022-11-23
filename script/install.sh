@@ -3,7 +3,7 @@
 echo "# Dependencies"
 echo "#----------------------------"
 sudo apt update
-sudo apt install -y git git-lfs openssh-server sshfs curl build-essential python3 python3-pip
+sudo apt install -y git git-lfs openssh-server sshfs curl python3 python3-pip
 
 
 echo "# Git Configuration"
@@ -19,13 +19,13 @@ echo "# Clonage"
 echo "#----------------------------"
 cd
 git clone https://bitbucket.org/imt-mobisyst/mb6-tbot tbot
-cd ~/tbot
+cd tbot
 
 
 echo "# ROS et Docker"
 echo "#----------------------------"
-bash script/install-ros2.sh
-bash script/install-docker.sh
+bash ./script/install-ros2.sh
+bash ./script/install-docker.sh
 
 
 #echo "# Somes Packages"
