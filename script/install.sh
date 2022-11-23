@@ -3,7 +3,7 @@
 echo "# Dependencies"
 echo "#----------------------------"
 sudo apt update
-sudo apt install -y git git-install openssh-server sshfs curl code build-essential python3 python3-pip
+sudo apt install -y git git-lfs openssh-server sshfs curl build-essential python3 python3-pip
 
 
 echo "# Git Configuration"
@@ -24,18 +24,18 @@ cd ~/tbot
 
 echo "# ROS et Docker"
 echo "#----------------------------"
-bash script/install-ros.sh
+bash script/install-ros2.sh
 bash script/install-docker.sh
 
 
-echo "# Somes Packages"
-echo "#----------------------------"
+#echo "# Somes Packages"
+#echo "#----------------------------"
 # tbot dpds :
-sudo apt install -y \
-  ros-noetic-depthimage-to-laserscan \
-  ros-noetic-joy \
-  ros-noetic-urg-node \
-  ros-noetic-urdf
+#sudo apt install -y \
+#  ros-noetic-depthimage-to-laserscan \
+#  ros-noetic-joy \
+#  ros-noetic-urg-node \
+#  ros-noetic-urdf
 # gazebo dpds :
 # sudo apt install -y \
 #   ros-noetic-gazebo-ros \
