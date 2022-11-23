@@ -1,18 +1,25 @@
 #!/usr/bin/env bash
 
 echo "# Dependencies"
-echo "#----------------------------""
+echo "#----------------------------"
 sudo apt update
-sudo apt install -y git sshfs curl code build-essential
+sudo apt install -y git git-install openssh-server sshfs curl code build-essential python3 python3-pip
+
+
+echo "# Git Configuration"
+echo "#----------------------------"
+git config --global user.name bot
+git config --global user.email bot@mb6.imt-nord-europe.fr
+git config --global credential.helper cache
+git config --global http.sslVerify false
+git-lfs install
 
 
 echo "# Clonage"
 echo "#----------------------------"
 cd
-git config --global http.sslVerify false
 git clone https://bitbucket.org/imt-mobisyst/mb6-tbot tbot
 cd ~/tbot
-#git checkout dev-guillaume
 
 
 echo "# ROS et Docker"

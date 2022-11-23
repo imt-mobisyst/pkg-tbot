@@ -3,54 +3,66 @@
 
 ## RealSense Camera:
 
-TBot perception integrate a RealSense Camera
-
-```sh
-bash ./script/install_realsense.sh
-```
-
-or :
-
-### Install the RealSense
-
-For the drivers:
+### Install instruction
 
 * [Linux instruction](https://github.com/IntelRealSense/librealsense/blob/master/doc/distribution_linux.md))
-* [ROS installation](https://github.com/IntelRealSense/realsense-ros#installation-instructions)
-* [wiki ros](http://wiki.ros.org/RealSense) - The interesting pkg is the **realsense2_camera**
 
-First you want to configure the software manager (`apt`) to follow Intel Realsense repository.
-
-1. Register the server's public key:
-
-```bash
-sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-key F6E65AC044F831AC80A06380C8B3A55A6F3EFCDE
-#or, if you are on a restricted network with closed ports...
+```sh
+# RealSense:
 sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-key F6E65AC044F831AC80A06380C8B3A55A6F3EFCDE
-```
-
-2. Then add the server to the list of repositories: 
-
-```bash
 sudo add-apt-repository "deb https://librealsense.intel.com/Debian/apt-repo $(lsb_release -cs) main" -u
-```
 
-Now, you can easily install the libraries and tools:
-
-```bash
-sudo apt install \
+## Independant:
+sudo apt install -y \
     librealsense2-dkms \
     librealsense2-utils \
     librealsense2-dev \
     librealsense2-dbg
 ```
 
-Connect the Intel RealSense depth camera and run: `realsense-viewer`.
+### Install instruction Bis
 
-Then you can install appropriate ROS packages
+* [Other Linux instruction](https://github.com/IntelRealSense))
 
-Ressources:
+Version based on [vcpkg](https://github.com/Microsoft/vcpkg) dependency manager:
 
+- vcpkg:
+
+```
+cd
+mkdir .local/app
+cd .local/app
+git clone https://github.com/Microsoft/vcpkg.git
+cd vcpkg
+./vcpkg/bootstrap-vcpkg.sh
+```
+
+- Some dependencies
+
+```
+sudo apt install autoconf dh-autoreconf libudev-dev
+```
+
+
+- The realsense:
+
+```
+./vcpkg/vcpkg install realsense2
+```
+
+Mais bon ça ne marche pas...
+
+### Install instruction Bis
+
+* [thrid linux instruction](https://dev.intelrealsense.com/docs/compiling-librealsense-for-linux-ubuntu-guide)
+
+
+### RealSense on ROS
+
+For the drivers:
+
+* [ROS installation](https://github.com/IntelRealSense/realsense-ros#installation-instructions)
+* [wiki ros](http://wiki.ros.org/RealSense) - The interesting pkg is the **realsense2_camera**
 
 Installation:
 
