@@ -51,7 +51,9 @@ sudo apt install autoconf dh-autoreconf libudev-dev
 ./vcpkg/vcpkg install realsense2
 ```
 
-Mais bon ça ne marche pas...
+Mais bon ça ne marche pas en 22.04 pour le moment...
+
+
 
 
 ### RealSense on ROS
