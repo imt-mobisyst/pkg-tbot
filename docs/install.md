@@ -1,6 +1,9 @@
 
 ## Installation
 
+/!\ In case of differences betwen ths information here and the elements in intall.sh script, consider that the script is up to date.
+
+
 The `tbot` project requires several dependencies mostly relying on Docker and ROS
 to load turtlebot-kobuki ROS driver in a virtual environment and add some usefull ROS packages (laser, ros2-bridge...). 
 
@@ -98,3 +101,15 @@ catkin_make
 ```
 
 (for a selection of packahes: `catkin_make --only-pkg-with-deps kobuki_safety_controller`)
+
+**Extra:** 
+
+**Tbot** takes advantage of different extra-dependancy, tically the Realsence-camera, the kokuyo laser range, simulation configuration...
+The install procedures and more information on [./doc/install-extra.md](install-extra.md).
+
+**In short:**
+
+```sh
+cd tbot
+./script/install-extra
+```

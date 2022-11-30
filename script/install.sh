@@ -24,7 +24,7 @@ cd tbot
 
 echo "# ROS et Docker"
 echo "#----------------------------"
-bash ./script/install-ros2.sh
+bash ./script/install-ros.sh
 bash ./script/install-docker.sh
 
 
@@ -45,7 +45,7 @@ bash ./script/install-docker.sh
 
 echo "# Genrations"
 echo "#----------------------------"
-bash script/generate-docker-images.sh
+bash ./script/generate-docker-images.sh
 
 #sudo usermod -a -G dialout $USER
 #roscore > roscore.log &
@@ -53,5 +53,9 @@ bash script/generate-docker-images.sh
 
 #bash src/tbot/script/install_simulation.sh
 #catkin_make
+
+echo "# Extra equipments"
+echo "#----------------------------"
+bash ./script/install-extra.sh
 
 echo ">> TBOT (on branch: master) installed in ~/tbot <<"
