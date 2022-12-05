@@ -4,7 +4,8 @@ echo "# Install realsense2"
 echo "#----------------------------"
 
 # Some dependancies:
-sudo apt install autoconf dh-autoreconf libudev-dev
+sudo apt install libc6=2.31-0ubuntu9.7
+sudo apt install autoconf dh-autoreconf libudev-dev cmake
 
 # Make dependencies' directory:
 if [[ ! -d dpd ]]

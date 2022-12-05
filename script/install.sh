@@ -5,7 +5,9 @@ echo "#----------------------------"
 sudo apt update
 sudo apt remove -y openssh-client
 sudo apt install -y git git-lfs openssh-server sshfs curl python3 python3-pip
-sudo apt install code
+sudo apt install libc6=2.31-0ubuntu9.7
+sudo apt install -y build-essential cmake
+#sudo apt install code not on 20.04...
 
 echo "# Git Configuration"
 echo "#----------------------------"
@@ -24,11 +26,14 @@ mkdir mb6Space/src
 git clone https://bitbucket.org/imt-mobisyst/mb6-tbot mb6Space/src/tbot
 cd mb6Space/src/tbot
 
+echo "# Other Dependencies"
+echo "#----------------------------"
+sudo dpkg -i dpd/code_1.73.1-1667967334_amd64.deb
+
 echo "# ROS et Docker"
 echo "#----------------------------"
 bash ./script/install-ros.sh
 bash ./script/install-docker.sh
-
 
 #echo "# Somes Packages"
 #echo "#----------------------------"
@@ -43,7 +48,6 @@ bash ./script/install-docker.sh
 #   ros-noetic-gazebo-ros \
 #   ros-noetic-gazebo-plugins \
 #   ros-noetic-depth-image-proc
-
 
 echo "# Genrations"
 echo "#----------------------------"
