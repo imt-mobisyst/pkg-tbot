@@ -4,7 +4,7 @@ echo "# Dependencies"
 echo "#----------------------------"
 sudo apt update
 sudo apt install -y git git-lfs openssh-server sshfs curl python3 python3-pip
-
+sudo apt install code
 
 echo "# Git Configuration"
 echo "#----------------------------"
@@ -18,9 +18,10 @@ git-lfs install
 echo "# Clonage"
 echo "#----------------------------"
 cd
-git clone https://bitbucket.org/imt-mobisyst/mb6-tbot tbot
+mkdir mb6Space
+mkdir mb6Space/src
+git clone https://bitbucket.org/imt-mobisyst/mb6-tbot mb6Space/src/tbot
 cd tbot
-
 
 echo "# ROS et Docker"
 echo "#----------------------------"

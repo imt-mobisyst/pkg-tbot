@@ -30,11 +30,7 @@ This script will install dependencies, configure git, clone the repo, generate t
 
 **In detail:** 
 
-<<<<<<< HEAD
 A detailled install porcedure is proposed here: [./docs/install.md](docs/install.md).
-=======
-A detailled install porcedure is proposed here: [./doc/install.md](install.md).
->>>>>>> 0826d845074335f64ce6202b79a67c71ce8cc248
 
 
 ## Getting started
