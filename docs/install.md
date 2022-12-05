@@ -1,27 +1,75 @@
+# Installation of tbot
 
-## Installation
 
 The `tbot` project requires several dependencies mostly relying on Docker and ROS
-to load turtlebot-kobuki ROS driver in a virtual environment and add some usefull ROS packages (laser, ros2-bridge...). 
+to load turtlebot-kobuki ROS driver in a virtual environment and add some usefull ROS packages (ros2-bridge, laser...). 
 
 ### Dependencies
 
 TBot Requires an Ubuntu/ROS machine with Docker and some other dependencies.
 
-**Classical Ubuntu packages.**
+**Classical Ubuntu packages :**
 
 ```sh
 sudo apt update
-sudo apt install -y git sshfs curl code build-essential
+sudo apt install -y git git-lfs openssh-server sshfs curl python3 python3-pip
 ```
 
 
-**ROS and Docker**
+### Get tbot
+
+Clone this repo:
+
+```sh
+git clone https://bitbucket.org/imt-mobisyst/mb6-tbot tbot
+cd tbot
+```
+
+
+### ROS and Docker
 
 Installation procedure:
 
 - [ROS](https://wiki.ros.org/noetic/Installation/Ubuntu) (script: [install-ros.sh](../script/install-ros.sh))
 - [Docker](https://docs.docker.com/engine/install/ubuntu) (script: [install-docker.sh](../script/install-docker.sh))
+
+
+### Some extra
+
+**Tbot** can take advantage of different extra-dependancy, tically the realsence-camera, the kokuyo laser range, simulation configuration...
+The install procedures and more information on [./install-extra.md](install-extra.md).
+
+**In short:**
+
+```sh
+cd tbot
+./script/install-extra.sh
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 **Some ROS packages.**

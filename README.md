@@ -2,7 +2,7 @@
 
 This project is a ROS Catkin package that includes usefull elements for turtlebot2 robots in the IMT Nord-Europe configuration (**tbot**).
 
-Last system version: **Ubuntu 20.04 lts** / **ROS neotic**.
+Last system version: **Ubuntu 20.04 lts** / **ROS1 neotic** + **ROS2 foxy** 
 
 Also, **tbot** is designed to work on a Raspberry-Pi3.
 To configure the Pi3 before to install **tbot**, please refers to [mb6-playload](https://www.bitbucket.org/imt-mobisyst/mb6-playload) project.
@@ -14,9 +14,9 @@ The **tbot** project requires several dependencies mostly relying on Docker and 
 
 However to shortcut the installation process you can execute the install script (supose that ROS Neotic is already installed): 
 
-**In short:** [./script/install.sh](install.sh)
+**In short:** [./script/install.sh](script/install.sh)
 
-By considering that curl and git are installed, you can just execute the folloowing command in your favorit shell:
+From a blanc machin, you can just execute the following commands in your favorit shell:
 
 ```sh
 sudo apt update
@@ -29,19 +29,7 @@ This script will install dependencies, configure git, clone the repo, generate t
 
 **In detail:** 
 
-A detailled install porcedure is proposed here: [./doc/install.md](install.md).
-
-**Extra:** 
-
-**Tbot** can take advantage of different extra-dependancy, tically the Realsence-camera, the kokuyo laser range, simulation configuration...
-The install procedures and more information on [./doc/install-extra.md](install-extra.md).
-
-**In short:**
-
-```sh
-cd tbot
-./script/install-extra
-```
+A detailled install porcedure is proposed here: [./docs/install.md](docs/install.md).
 
 
 ## Getting started
