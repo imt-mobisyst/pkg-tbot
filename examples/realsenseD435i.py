@@ -49,8 +49,8 @@ if not (found_rgb or found_motion):
     print("Depth camera with motion module required !!!")
     exit(0)
 
-config.enable_stream(rs.stream.depth, 640, 480, rs.format.z16, 60)
-config.enable_stream(rs.stream.color, 640, 480, rs.format.bgr8, 60)
+config.enable_stream(rs.stream.color) #, 1280, 720, rs.format.bgr8, 60)
+config.enable_stream(rs.stream.depth) #, 640, 480, rs.format.z16, 60)
 config.enable_stream(rs.stream.accel)
 config.enable_stream(rs.stream.gyro)
 
@@ -89,12 +89,15 @@ try:
         depth_colormap_dim = depth_colormap.shape
         color_colormap_dim = color_image.shape
 
+        print( color_colormap_dim )
+        # print( depth_colormap.shape )
+
         # IMU
         accel= accel_frame.get_motion_data()
         gyro= gyro_frame.get_motion_data()
 
         # Show images
-        images = np.hstack((color_image, depth_colormap)) # supose that depth_colormap_dim == color_colormap_dim (640x480) otherwize: resized_color_image = cv2.resize(color_image, dsize=(depth_colormap_dim[1], depth_colormap_dim[0]), interpolation=cv2.INTER_AREA)
+        images = color_image # np.hstack((color_image, depth_colormap)) # supose that depth_colormap_dim == color_colormap_dim (640x480) otherwize: resized_color_image = cv2.resize(color_image, dsize=(depth_colormap_dim[1], depth_colormap_dim[0]), interpolation=cv2.INTER_AREA)
         images= imageWrite(images, f"{round(freq)} fps", (30, 30))
         images= imageWrite(images, f"accel: x: {round(accel.x, 2)}, y: {round(accel.y, 2)}, z: {round(accel.z, 2)}", (30, 60))
         images= imageWrite(images, f"gyro: x: {round(gyro.x, 2)}, y: {round(gyro.y, 2)}, z: {round(gyro.z, 2)}", (30, 90))
