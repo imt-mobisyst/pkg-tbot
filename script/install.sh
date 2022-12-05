@@ -3,6 +3,7 @@
 echo "# Dependencies"
 echo "#----------------------------"
 sudo apt update
+sudo apt remove -y openssh-client
 sudo apt install -y git git-lfs openssh-server sshfs curl python3 python3-pip
 sudo apt install code
 
@@ -21,7 +22,7 @@ cd
 mkdir mb6Space
 mkdir mb6Space/src
 git clone https://bitbucket.org/imt-mobisyst/mb6-tbot mb6Space/src/tbot
-cd tbot
+cd mb6Space/src/tbot
 
 echo "# ROS et Docker"
 echo "#----------------------------"
