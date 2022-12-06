@@ -49,9 +49,9 @@ bash ./script/install-docker.sh
 #   ros-noetic-gazebo-plugins \
 #   ros-noetic-depth-image-proc
 
-echo "# Genrations"
-echo "#----------------------------"
-bash ./script/generate-docker-images.sh
+#echo "# Genrations"
+#echo "#----------------------------"
+#bash ./script/generate-docker-images.sh
 
 #sudo usermod -a -G dialout $USER
 #roscore > roscore.log &
