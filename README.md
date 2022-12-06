@@ -16,15 +16,13 @@ However to shortcut the installation process you can execute the install script 
 
 **In short:** [./script/install-full.sh](script/install-full.sh)
 
-From a blanc machin, you can just execute the following commands in your favorit shell:
+From a frech Ubuntu 20.04 instal, you can just execute the following commands in your favorit shell:
 
 ```sh
 sudo apt update
 sudo apt install openssh-server curl
 # Potentially: log with ssh, then
-mkdir rosspace
-mkdir rosspace/src
-cd rosspace/src
+cd ros-workspace/src # optional (We recommand you to perform this install in your `src` directory of your ros-workspace.)
 curl -k https://bitbucket.org/imt-mobisyst/mb6-tbot/raw/master/script/install-full.sh | bash
 ```
 

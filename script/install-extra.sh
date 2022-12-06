@@ -35,3 +35,5 @@ cd ..
 
 echo "# Install urg_node"
 echo "#----------------------------"
+
+sudo apt install -y ros-foxy-urg-node

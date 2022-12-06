@@ -1,10 +1,5 @@
 #!/usr/bin/env bash
 
-echo "# Install realsense2"
-echo "#----------------------------"
-
-# [doc](https://docs.ros.org/en/foxy/Installation.html)
-
 echo "## Dependencies"
 echo "##----------------------------"
 

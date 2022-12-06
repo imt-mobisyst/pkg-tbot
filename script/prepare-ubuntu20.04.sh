@@ -1,7 +1,7 @@
 echo "# Few Configurations"
 echo "#----------------------------"
 sudo cp /etc/apt/sources.list /etc/apt/`date +%F-%T`.source.list.old
-sudo cp dpd/sources.list /etc/apt/sources.list
+sudo cp config/u20-sources.list /etc/apt/sources.list
 
 echo "# Dependencies"
 echo "#----------------------------"
