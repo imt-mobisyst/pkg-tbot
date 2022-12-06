@@ -24,3 +24,6 @@ echo \
 # lets install docker:
 sudo apt update
 sudo apt install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
+
+# pull kobuki image:
+sudo docker pull lozenge14/imt-mobisyst:u16kobuki

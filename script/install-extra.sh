@@ -1,11 +1,10 @@
 #!/usr/bin/env bash
 
-echo "# Install realsense2"
-echo "#----------------------------"
+# Some complement:
+echo "## Classical libs"
+echo "##----------------------------"
 
-# Some dependancies:
-sudo apt install libc6=2.31-0ubuntu9.7
-sudo apt install autoconf dh-autoreconf libudev-dev cmake
+sudo apt install -y libopencv-dev python3-opencv
 
 # Make dependencies' directory:
 if [[ ! -d dpd ]]
@@ -25,4 +24,14 @@ git clone https://github.com/Microsoft/vcpkg.git
 echo "## Get and Build RealSense2"
 echo "##----------------------------"
 
+# Some dependancies:
+sudo apt install -y autoconf dh-autoreconf libudev-dev cmake
+
 ./vcpkg/vcpkg install realsense2
+#pip install pyrealsense2
+
+cd ..
+./script/setup_udev_rules.sh
+
+echo "# Install urg_node"
+echo "#----------------------------"
