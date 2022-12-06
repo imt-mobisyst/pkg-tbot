@@ -11,15 +11,15 @@ cd tbot
 
 echo "# Ubuntu 20.04"
 echo "#----------------------------"
-#bash ./script/prepare-ubuntu20.04.sh
+bash ./script/prepare-ubuntu20.04.sh
 
 echo "# ROS et Docker"
 echo "#----------------------------"
-#bash ./script/install-ros.sh
-#bash ./script/install-docker.sh
+bash ./script/install-ros.sh
+bash ./script/install-docker.sh
 
 echo "# Extra equipments"
 echo "#----------------------------"
-#bash ./script/install-extra.sh
+bash ./script/install-extra.sh
 
 echo ">> TBOT (on branch: master) installed in ~/mb6Space/src/tbot <<"
