@@ -22,4 +22,9 @@ echo "# Extra equipments"
 echo "#----------------------------"
 bash ./script/install-extra.sh
 
+echo "# And finally build it"
+echo "#----------------------------"
+bash ./script/build.sh
+
+
 echo ">> TBOT (on branch: master) installed in ~/mb6Space/src/tbot <<"

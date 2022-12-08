@@ -7,7 +7,7 @@
 
 import pyrealsense2 as rs
 import time, numpy as np
-import cv2
+import sys, cv2
 
 def imageWrite(image, text, position= (50,50)) :
     # font
@@ -35,24 +35,20 @@ device = pipeline_profile.get_device()
 device_product_line = str(device.get_info(rs.camera_info.product_line))
 
 print( f"Connect: {device_product_line}" )
-
+720
 found_rgb = False
 found_motion = False
 for s in device.sensors:
     print( "Name:" + s.get_info(rs.camera_info.name) )
     if s.get_info(rs.camera_info.name) == 'RGB Camera':
         found_rgb = True
-    if s.get_info(rs.camera_info.name) == 'Motion Module':
-        found_motion = True
-        
-if not (found_rgb or found_motion):
-    print("Depth camera with motion module required !!!")
+
+if not (found_rgb):
+    print("Depth camera equired !!!")
     exit(0)
 
-config.enable_stream(rs.stream.color) #, 1280, 720, rs.format.bgr8, 60)
-config.enable_stream(rs.stream.depth) #, 640, 480, rs.format.z16, 60)
-config.enable_stream(rs.stream.accel)
-config.enable_stream(rs.stream.gyro)
+config.enable_stream(rs.stream.color, 848, 480, rs.format.bgr8, 60)
+config.enable_stream(rs.stream.depth, 848, 480, rs.format.z16, 60)
 
 # Start streaming
 pipeline.start(config)
@@ -62,6 +58,8 @@ try:
     refTime= time.process_time()
     freq= 60
 
+    sys.stdout.write("-")
+
     while True:
 
         # Wait for a coherent tuple of frames: depth, color and accel
@@ -69,14 +67,8 @@ try:
 
         depth_frame = frames.first(rs.stream.depth) #frames.get_frame_number(0).as_depth_frame() # frames.get_depth_frame()
         color_frame = frames.first(rs.stream.color) #frames.get_frame_number(1).as_video_frame() # frames.get_color_frame()
-        accel_frame = frames.first(rs.stream.accel).as_motion_frame() #frames.frames.get_frame_number(2)
-        gyro_frame = frames.first(rs.stream.gyro).as_motion_frame() #frames.frames.get_frame_number(2)
 
-        #print(f"{depth_frame} - {depth_frame.timestamp}")
-        #print(f"{color_frame} - {color_frame.timestamp}")
-        #print(f"{motion_frame} - {motion_frame.timestamp}")
-
-        if not (depth_frame and color_frame and accel_frame and gyro_frame):
+        if not (depth_frame and color_frame):
             continue
         
         # Convert images to numpy arrays
@@ -89,18 +81,11 @@ try:
         depth_colormap_dim = depth_colormap.shape
         color_colormap_dim = color_image.shape
 
-        print( color_colormap_dim )
-        # print( depth_colormap.shape )
-
-        # IMU
-        accel= accel_frame.get_motion_data()
-        gyro= gyro_frame.get_motion_data()
+        sys.stdout.write( f"\r- {color_colormap_dim} - {depth_colormap_dim} - ({round(freq)} fps)" )
 
         # Show images
-        images = color_image # np.hstack((color_image, depth_colormap)) # supose that depth_colormap_dim == color_colormap_dim (640x480) otherwize: resized_color_image = cv2.resize(color_image, dsize=(depth_colormap_dim[1], depth_colormap_dim[0]), interpolation=cv2.INTER_AREA)
+        images = np.hstack((color_image, depth_colormap)) # supose that depth_colormap_dim == color_colormap_dim (640x480) otherwize: resized_color_image = cv2.resize(color_image, dsize=(depth_colormap_dim[1], depth_colormap_dim[0]), interpolation=cv2.INTER_AREA)
         images= imageWrite(images, f"{round(freq)} fps", (30, 30))
-        images= imageWrite(images, f"accel: x: {round(accel.x, 2)}, y: {round(accel.y, 2)}, z: {round(accel.z, 2)}", (30, 60))
-        images= imageWrite(images, f"gyro: x: {round(gyro.x, 2)}, y: {round(gyro.y, 2)}, z: {round(gyro.z, 2)}", (30, 90))
 
         # Show images
         cv2.namedWindow('RealSense', cv2.WINDOW_AUTOSIZE)
