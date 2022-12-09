@@ -38,5 +38,4 @@ sudo apt install -y ros-foxy-ros1-bridge
 # Configure user bash:
 echo "" >> ~/.bashrc
 echo "# ROS" >> ~/.bashrc
-echo "source /opt/ros/noetic/setup.bash" >> ~/.bashrc
 echo "source /opt/ros/foxy/setup.bash" >> ~/.bashrc

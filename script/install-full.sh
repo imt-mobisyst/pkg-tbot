@@ -31,11 +31,14 @@ echo "# And finally build it"
 echo "#----------------------------"
 bash ./script/build.sh
 
+
 # Configure user bash:
 cd ../..
-echo "" >> ~/.bashrc
-echo " tbot WorkSpace" >> ~/.bashrc
-echo "source `dirs`/install/setup.bash" >> ~/.bashrc
 
+echo ""                                   >> ~/.bashrc
+echo "# Tbot WorkSpace"                    >> ~/.bashrc
+echo "if [ -d `dirs`/install ]; then"     >> ~/.bashrc
+echo "  source `dirs`/install/setup.sh"   >> ~/.bashrc
+echo "fi"                                 >> ~/.bashrc
 
 echo ">> TBOT (on branch: master) installed in ~/mb6Space/src/tbot <<"
