@@ -34,5 +34,9 @@ sudo apt update
 # Ros 2:
 sudo apt install -y ros-foxy-desktop ros-dev-tools #ros-foxy-ros-base for a more basic vertion, in Pi for instance... #ros-humble-... # on 2022 machine...
 sudo apt install -y ros-foxy-ros1-bridge 
+
+# Configure user bash:
+echo "" >> ~/.bashrc
+echo "# ROS" >> ~/.bashrc
+echo "source /opt/ros/noetic/setup.bash" >> ~/.bashrc
 echo "source /opt/ros/foxy/setup.bash" >> ~/.bashrc
-source ~/.bashrc

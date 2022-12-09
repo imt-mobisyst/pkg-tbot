@@ -6,6 +6,11 @@ sudo apt update
 sudo apt install -y git
 
 # Make ROS src directory:
+cd
+mkdir rosspace
+mkdir rosspace/src
+cd rosspace/src
+
 git clone https://bitbucket.org/imt-mobisyst/mb6-tbot tbot
 cd tbot
 
@@ -25,6 +30,12 @@ bash ./script/install-extra.sh
 echo "# And finally build it"
 echo "#----------------------------"
 bash ./script/build.sh
+
+# Configure user bash:
+cd ../..
+echo "" >> ~/.bashrc
+echo " tbot WorkSpace" >> ~/.bashrc
+echo "source `dirs`/install/setup.bash" >> ~/.bashrc
 
 
 echo ">> TBOT (on branch: master) installed in ~/mb6Space/src/tbot <<"
