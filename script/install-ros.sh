@@ -36,6 +36,6 @@ sudo apt install -y ros-foxy-desktop ros-dev-tools #ros-foxy-ros-base for a more
 sudo apt install -y ros-foxy-ros1-bridge 
 
 # Configure user bash:
-echo "" >> ~/.bashrc
-echo "# ROS" >> ~/.bashrc
-echo "source /opt/ros/foxy/setup.bash" >> ~/.bashrc
+#echo "" >> ~/.bashrc
+#echo "# ROS" >> ~/.bashrc
+#echo "source /opt/ros/foxy/setup.bash" >> ~/.bashrc

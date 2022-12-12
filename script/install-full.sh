@@ -7,9 +7,9 @@ sudo apt install -y git
 
 # Make ROS src directory:
 cd
-mkdir rosspace
-mkdir rosspace/src
-cd rosspace/src
+mkdir ros2_ws
+mkdir ros2_ws/src
+cd ros2_ws/src
 
 git clone https://bitbucket.org/imt-mobisyst/mb6-tbot tbot
 cd tbot
@@ -32,13 +32,32 @@ echo "#----------------------------"
 bash ./script/build.sh
 
 
+# Make Gazebo :
+cd
+mkdir ros1_ws
+mkdir ros1_ws/src
+cd ros1_ws/src
+
+sudo apt install libyaml-cpp-dev \
+    ros-noetic-gazebo-nodelet \
+    gazebo11 \
+    ros-noetic-gazebo-ros \
+    ros-noetic-xacro \
+    ros-robot-state-publisher  \
+    ros-noetic-joy \
+    ros-noetic-urg-node \
+    ros-noetic-gazebo-plugins
+
+git clone git@bitbucket.org:imt-mobisyst/larm_material.git
+
+cd ..
+source /opt/ros/noetic/setup.bash
+catkin_make
+
 # Configure user bash:
-cd ../..
 
-echo ""                                   >> ~/.bashrc
-echo "# Tbot WorkSpace"                    >> ~/.bashrc
-echo "if [ -d `dirs`/install ]; then"     >> ~/.bashrc
-echo "  source `dirs`/install/setup.sh"   >> ~/.bashrc
-echo "fi"                                 >> ~/.bashrc
+echo ""                   >> ~/.bashrc
+echo "#ROS"               >> ~/.bashrc
+echo 'alias rosify1="source /opt/ros/noetic/setup.bash && source $HOME/ros1_ws/devel/setup.bash"' >> ~/.bashrc
+echo 'alias rosify2="source /opt/ros/foxy/setup.bash && source $HOME/ros2_ws/install/setup.bash"'  >> ~/.bashrc
 
-echo ">> TBOT (on branch: master) installed in ~/mb6Space/src/tbot <<"
