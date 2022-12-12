@@ -46,9 +46,12 @@ sudo apt install libyaml-cpp-dev \
     ros-robot-state-publisher  \
     ros-noetic-joy \
     ros-noetic-urg-node \
-    ros-noetic-gazebo-plugins
+    ros-noetic-gazebo-plugins \
+    ros-noetic-rqt-graph
 
 git clone git@bitbucket.org:imt-mobisyst/larm_material.git
+
+sudo sed -i 's/m = r.search(vstr)/m = r.search(vstr.decode("utf-8"))/' /opt/ros/noetic/lib/tf/view_frames
 
 cd ..
 source /opt/ros/noetic/setup.bash

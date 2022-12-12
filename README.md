@@ -44,12 +44,22 @@ A manual detailled install porcedure is proposed here: [./docs/install.md](docs/
 
 ## Getting started
 
-Test kobuki: 
+Test kobuki (with laser): 
 
-1. Update your shell environnement: `source /opt/ros/foxy/setup.bash & source ../../install/setup.bash`
-1. Connect and switch-on the turtlebot-kobuki
-2. Start the docker in a $1st$ terminal: `ros2 run tbot_start start`
-2. Start the hokuyo-laser driver in a $2d$ terminal: `source /opt/ros/foxy/setup.bash & ros2 run urg_node urg_node_driver --ros-args -p serial_port:=/dev/ttyACM0`
-3. Launch a bridge between ROS1 and ROS2 in a $3d$ terminal: `source /opt/ros/noetic/setup.bash & source /opt/ros/foxy/setup.sh & ros2 run ros1_bridge dynamic_bridge`
-3. Teleop the robot, in a $4th$ terminal: `source /opt/ros/foxy/setup.bash & ros2 run teleop_twist_keyboard teleop_twist_keyboard --ros-args --remap cmd_vel:=/mobile_base/commands/velocity`
-4. Stop processes (in each terminal: `ctrl-c`).
+1. Update your shell environnement (in `ros2_ws`): `source /opt/ros/foxy/setup.bash && colcon build && source install/setup.bash`
+2. Connect and switch-on the turtlebot-kobuki
+3. Start the docker in a $1st$ terminal: `ros2 run tbot_start start`
+4. Start the hokuyo-laser driver in a $2d$ terminal: `source /opt/ros/foxy/setup.bash & ros2 run urg_node urg_node_driver --ros-args -p serial_port:=/dev/ttyACM0`
+5. Launch a bridge between ROS1 and ROS2 in a $3d$ terminal: `source /opt/ros/noetic/setup.bash & source /opt/ros/foxy/setup.sh & ros2 run ros1_bridge dynamic_bridge`
+6. Teleop the robot, in a $4th$ terminal: `source /opt/ros/foxy/setup.bash & ros2 run teleop_twist_keyboard teleop_twist_keyboard --ros-args --remap cmd_vel:=/mobile_base/commands/velocity`
+7. Stop processes (in each terminal: `ctrl-c`).
+
+Test Simulation (with ros1/2 bridge):
+
+1. Update your shell environnement (in `ros1_ws`): `source /opt/ros/noetic/setup.bash && catkin_make && source devel/setup.bash`
+3. Start a gazebo simulation in a $1st$ terminal: `roslaunch larm challenge-1.launch`
+5. Launch a bridge between ROS1 and ROS2 in a $3d$ terminal: `source /opt/ros/noetic/setup.bash & source /opt/ros/foxy/setup.sh & ros2 run ros1_bridge dynamic_bridge`
+6. Teleop the robot, in a $4th$ terminal: `source /opt/ros/foxy/setup.bash & ros2 run teleop_twist_keyboard teleop_twist_keyboard --ros-args --remap cmd_vel:=/mobile_base/commands/velocity`
+7. Stop processes (in each terminal: `ctrl-c`).
+
+
