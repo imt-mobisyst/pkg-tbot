@@ -57,9 +57,9 @@ Test kobuki (with laser):
 Test Simulation (with ros1/2 bridge):
 
 1. Update your shell environnement (in `ros1_ws`): `source /opt/ros/noetic/setup.bash && catkin_make && source devel/setup.bash`
-3. Start a gazebo simulation in a $1st$ terminal: `roslaunch larm challenge-1.launch`
-5. Launch a bridge between ROS1 and ROS2 in a $3d$ terminal: `source /opt/ros/noetic/setup.bash & source /opt/ros/foxy/setup.sh & ros2 run ros1_bridge dynamic_bridge`
-6. Teleop the robot, in a $4th$ terminal: `source /opt/ros/foxy/setup.bash & ros2 run teleop_twist_keyboard teleop_twist_keyboard --ros-args --remap cmd_vel:=/mobile_base/commands/velocity`
-7. Stop processes (in each terminal: `ctrl-c`).
+2. Start a gazebo simulation in a $1st$ terminal: `roslaunch larm challenge-1.launch`
+3. Launch a bridge between ROS1 and ROS2 in a $2d$ terminal: `source /opt/ros/noetic/setup.bash & source /opt/ros/foxy/setup.sh & ros2 run ros1_bridge dynamic_bridge`
+4. Sartr `rviz2` in a $3d$ terminal and connect laserScan on the `\scan` topic refering the `\laser_sensor_link` frame
+5. Stop processes (in each terminal: `ctrl-c`).
 
 
