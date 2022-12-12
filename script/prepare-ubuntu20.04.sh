@@ -5,7 +5,9 @@ sudo cp config/u20-sources.list /etc/apt/sources.list
 
 echo "# Dependencies"
 echo "#----------------------------"
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 4EB27DB2A3B88B8B # update expired chrome key
 sudo apt update
+sudo apt upgrade -y
 sudo apt install -y git git-lfs openssh-server sshfs \
     build-essential cmake \
     python3 python3-pip
