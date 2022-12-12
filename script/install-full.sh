@@ -38,17 +38,16 @@ mkdir ros1_ws
 mkdir ros1_ws/src
 cd ros1_ws/src
 
-sudo apt install libyaml-cpp-dev \
-    ros-noetic-gazebo-nodelet \
+sudo apt install -y libyaml-cpp-dev \
+    ros-noetic-gazebo-plugins \
     gazebo11 \
     ros-noetic-gazebo-ros \
     ros-noetic-xacro \
-    ros-robot-state-publisher  \
+    ros-noetic-robot-state-publisher  \
     ros-noetic-joy \
-    ros-noetic-urg-node \
-    ros-noetic-gazebo-plugins
+    ros-noetic-urg-node
 
-git clone git@bitbucket.org:imt-mobisyst/larm_material.git
+git clone https://bitbucket.org/imt-mobisyst/larm_material.git
 
 cd ..
 source /opt/ros/noetic/setup.bash
@@ -59,5 +58,6 @@ catkin_make
 echo ""                   >> ~/.bashrc
 echo "#ROS"               >> ~/.bashrc
 echo 'alias rosify1="source /opt/ros/noetic/setup.bash && source $HOME/ros1_ws/devel/setup.bash"' >> ~/.bashrc
+echo 'export GAZEBO_RESOURCE_PATH="$HOME/ros1_ws/src/larm_material/larm/models"' >> ~/.bashrc
 echo 'alias rosify2="source /opt/ros/foxy/setup.bash && source $HOME/ros2_ws/install/setup.bash"'  >> ~/.bashrc
 

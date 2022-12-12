@@ -6,6 +6,7 @@ sudo cp config/u20-sources.list /etc/apt/sources.list
 echo "# Dependencies"
 echo "#----------------------------"
 sudo apt update
+sudo apt upgrade -y
 sudo apt install -y git git-lfs openssh-server sshfs \
     build-essential cmake \
     python3 python3-pip
