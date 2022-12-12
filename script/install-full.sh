@@ -58,12 +58,10 @@ source /opt/ros/noetic/setup.bash
 catkin_make
 
 # Configure user bash:
-
-echo """
+cat >> ~/.bashrc << EOF
 
 # ROS
 alias rosify1="source /opt/ros/noetic/setup.bash && source $HOME/ros1_ws/devel/setup.bash"
 export GAZEBO_RESOURCE_PATH="$HOME/ros1_ws/src/larm_material/larm/models"
 alias rosify2="source /opt/ros/foxy/setup.bash && source $HOME/ros2_ws/install/setup.bash"
-""" >> ~/.bashrc
-
+EOF
