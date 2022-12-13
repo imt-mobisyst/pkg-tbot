@@ -35,8 +35,11 @@ sudo apt update
 sudo apt install -y ros-foxy-desktop ros-dev-tools #ros-foxy-ros-base for a more basic vertion, in Pi for instance... #ros-humble-... # on 2022 machine...
 sudo apt install -y ros-foxy-ros1-bridge 
 
-echo "## Install ROS2 SLAM/Nav"
+echo "## ROS2 advanced deps"
 sudo apt install -y \
     ros-foxy-slam-toolbox \
     ros-foxy-navigation2 \
-    ros-foxy-nav2-bringup
+    ros-foxy-nav2-bringup \
+    ros-foxy-xacro \
+    ros-foxy-joint-state-publisher-gui \
+    ros-foxy-gazebo-ros-pkgs
