@@ -24,18 +24,22 @@ echo "##--------------------------------------"
 
 sudo apt update
 
-# Ros 1: (Only ros1 packages relative to rosbridge would be installed)
+#### Ros 1: (Only ros1 packages relative to rosbridge would be installed)
 #sudo apt install -y ros-noetic-ros-base
 #source /opt/ros/noetic/setup.bash
 #sudo apt install -y python3-rosdep python3-rosinstall python3-rosinstall-generator python3-wstool build-essential
 #sudo rosdep init
 #rosdep update
 
-# Ros 2:
+#### Ros 2
 sudo apt install -y ros-foxy-desktop ros-dev-tools #ros-foxy-ros-base for a more basic vertion, in Pi for instance... #ros-humble-... # on 2022 machine...
 sudo apt install -y ros-foxy-ros1-bridge 
 
-# Configure user bash:
-#echo "" >> ~/.bashrc
-#echo "# ROS" >> ~/.bashrc
-#echo "source /opt/ros/foxy/setup.bash" >> ~/.bashrc
+echo "## ROS2 advanced deps"
+sudo apt install -y \
+    ros-foxy-slam-toolbox \
+    ros-foxy-navigation2 \
+    ros-foxy-nav2-bringup \
+    ros-foxy-xacro \
+    ros-foxy-joint-state-publisher-gui \
+    ros-foxy-gazebo-ros-pkgs
