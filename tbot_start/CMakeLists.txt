@@ -33,6 +33,6 @@ if(BUILD_TESTING)
 endif()
 
 # Finally some scripts:
-install(PROGRAMS bin/start DESTINATION lib/${PROJECT_NAME} RENAME start)
+install(PROGRAMS bin/start_base DESTINATION lib/${PROJECT_NAME} RENAME start_base)
 
 ament_package()
