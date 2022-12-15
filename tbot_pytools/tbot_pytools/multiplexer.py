@@ -6,7 +6,7 @@ from geometry_msgs.msg import Twist
 
 class Multiplexer(Node):
 
-    def __init__( self, MsgType= Twist, inTopics=['/cmd_nav', '/cmd_teleop'], outTopics=['/cmd'] ):
+    def __init__( self, MsgType= Twist, inTopics=['/multi/cmd_nav', '/multi/cmd_teleop'], outTopics=['/cmd_vel', '/mobile_base/commands/velocity'] ):
         super().__init__('multiplexer')
         callbacks= [
             self.cmd_1_callback, self.cmd_2_callback, self.cmd_3_callback, self.cmd_4_callback,
@@ -26,6 +26,8 @@ class Multiplexer(Node):
     def cmd_callback(self, prevalence, cmdMsg):
         t= time.time()
         if prevalence >= self.hand or t - self.t > 1.0 :
+            if prevalence > self.hand :
+                self.get_logger().info( f"Get cmd from {prevalence}" )
             self.hand= prevalence
             self.t= t
             for p in self.myPublishers :
@@ -64,9 +66,7 @@ def multiplexer(args=None):
     rclpy.init(args=args)
 
     # Initialize ScanInterperter
-    node = Multiplexer(
-        outTopics= ['/cmd', '/cmd_vel_mux/input/safety_controller']
-    )
+    node = Multiplexer()
     
     # infinite Loop
     rclpy.spin(node)
