@@ -33,7 +33,6 @@ sudo apt update
 
 #### Ros 2
 sudo apt install -y ros-foxy-desktop ros-dev-tools #ros-foxy-ros-base for a more basic vertion, in Pi for instance... #ros-humble-... # on 2022 machine...
-sudo apt install -y ros-foxy-ros1-bridge 
 
 echo "## ROS2 advanced deps"
 sudo apt install -y \
@@ -43,3 +42,19 @@ sudo apt install -y \
     ros-foxy-xacro \
     ros-foxy-joint-state-publisher-gui \
     ros-foxy-gazebo-ros-pkgs
+
+#### Ros Bridge:
+echo "## Ros-Bridge"
+sudo apt install -y ros-foxy-ros1-bridge
+
+echo "Copy required ros1 lib for Ros-Bridge"
+sudo cp /opt/ros/noetic/lib/libroscpp.so\
+    /opt/ros/noetic/lib/libroscpp_serialization.so\
+    /opt/ros/noetic/lib/libxmlrpcpp.so\
+    /opt/ros/noetic/lib/librostime.so\
+    /opt/ros/noetic/lib/libcpp_common.so\
+    /opt/ros/noetic/lib/librosconsole.so\
+    /opt/ros/noetic/lib/librosconsole_log4cxx.so\
+    /opt/ros/noetic/lib/librosconsole_bridge.so\
+    /opt/ros/noetic/lib/librosconsole_backend_interface.so\
+    /opt/ros/foxy/lib/
