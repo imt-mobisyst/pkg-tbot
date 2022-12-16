@@ -4,9 +4,10 @@
   <name>tbot_start</name>
   <version>0.0.0</version>
   <description>Tbot (IMT Turtlebot3) launcher</description>
-  <maintainer email="guillaume@imt-nord-europe.fr">guillaume</maintainer>
+  <maintainer email="guillaume.lozenguez@imt-nord-europe.fr">guillaume</maintainer>
   <license>BSD</license>
   <buildtool_depend>ament_cmake</buildtool_depend>
+  <exec_depend>ros2launch</exec_depend>
   <test_depend>ament_lint_auto</test_depend>
   <test_depend>ament_lint_common</test_depend>
   <export>
