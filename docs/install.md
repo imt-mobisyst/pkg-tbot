@@ -108,9 +108,8 @@ Restart the machine to have everything configured properly.
 Clone this repo in your catkin directory:
 
 ```bash
-cd $HOME/catkin_ws
-mkdir src # If necessary
-git clone https://bitbucket.org/imt-mobisyst/mb6-tbot src/mb6-tbot
+cd $HOME/ros2_ws
+git clone https://bitbucket.org/imt-mobisyst/mb6-tbot pkg-tbot
 ```
 
 Potentially the cloning process fail du to SSL verification. Try: 

@@ -9,6 +9,8 @@ Thanks:
 - [gaunthan for Turtlebot2 on Melodic](https://github.com/gaunthan/Turtlebot2-On-Melodic)
 - [TheConstruct](https://www.theconstructsim.com/) the virtualisation and the simulation environment they provide.
 
+**/!\\ THIS TUTORIAL IS OBSOLETE /!\\ TODO: Update tu torial to ROS foxy**
+
 ## Installation
 
 **In short:** `install_apt_deps.sh`

@@ -3,7 +3,7 @@
 
 ## ToDo:
 
-- Reborn Docker architecture
+- Update `tuto-generate-tbot.md` to ROS2-Foxy
 - pibot: configure ethernet ROS2 connection.
 - Pibot: setup a startscript...
 - Pibot: capture button or something to shutdown...

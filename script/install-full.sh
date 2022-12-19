@@ -5,14 +5,13 @@ echo "#----------------------------"
 sudo apt update
 sudo apt install -y git
 
-# Make ROS src directory:
+# Make ROS workspace:
 cd
 mkdir ros2_ws
-mkdir ros2_ws/src
-cd ros2_ws/src
+cd ros2_ws
 
-git clone https://bitbucket.org/imt-mobisyst/mb6-tbot tbot
-cd tbot
+git clone https://bitbucket.org/imt-mobisyst/mb6-tbot pkg-tbot
+cd pkg-tbot
 
 echo "# Ubuntu 20.04"
 echo "#----------------------------"
