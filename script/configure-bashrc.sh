@@ -19,6 +19,6 @@ alias rosify2="source /opt/ros/foxy/setup.bash && source \$HOME/ros2_ws/install/
 alias imt-ip='ip a | egrep "inet 10\.[0-9|\.]+" | egrep -o "[1-9][0-9]*\.[1-9][0-9]*\.[1-9][0-9]*\.[1-9][0-9]*"'
 
 # Prompt
-PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]ros$ROS_VERSION@`imt-ip`\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]ros$ROS_VERSION@\`imt-ip\`\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
 
 EOF
