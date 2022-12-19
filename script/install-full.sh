@@ -5,14 +5,13 @@ echo "#----------------------------"
 sudo apt update
 sudo apt install -y git
 
-# Make ROS src directory:
+# Make ROS workspace:
 cd
 mkdir ros2_ws
-mkdir ros2_ws/src
-cd ros2_ws/src
+cd ros2_ws
 
-git clone https://bitbucket.org/imt-mobisyst/mb6-tbot tbot
-cd tbot
+git clone https://bitbucket.org/imt-mobisyst/mb6-tbot pkg-tbot
+cd pkg-tbot
 
 echo "# Ubuntu 20.04"
 echo "#----------------------------"
@@ -66,3 +65,14 @@ export PS1="\${ROS_VERSION:+(ros\$ROS_VERSION) }$PS1"
 alias rosify1="source /opt/ros/noetic/setup.bash && source \$HOME/ros1_ws/devel/setup.bash"
 alias rosify2="source /opt/ros/foxy/setup.bash && source \$HOME/ros2_ws/install/setup.bash"
 EOF
+
+echo """
+# ROS2
+source /opt/ros/foxy/setup.bash
+export ROS_LOCALHOST_ONLY=1
+
+# Tbot WorkSpace
+if [ -d ~/ros2_ws/install ]; then
+  source ~/ros2_ws/install/setup.sh
+fi
+""" >> ~/.bashrc

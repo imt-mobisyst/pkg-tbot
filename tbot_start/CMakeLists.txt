@@ -32,7 +32,13 @@ if(BUILD_TESTING)
   ament_lint_auto_find_test_dependencies()
 endif()
 
-# Finally some scripts:
+# Install some scripts:
 install(PROGRAMS bin/start_base DESTINATION lib/${PROJECT_NAME} RENAME start_base)
+
+# Install launch files.
+install(DIRECTORY
+  launch
+  DESTINATION share/${PROJECT_NAME}/
+)
 
 ament_package()

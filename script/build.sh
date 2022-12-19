@@ -2,5 +2,5 @@
 
 echo "# ROS build tool"
 echo "#----------------------------"
-cd ../..
+cd ..
 colcon build

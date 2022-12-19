@@ -32,8 +32,8 @@ This script will install dependencies, configure git, clone the repo, generate t
 If the environnement is already set (ROS etc...), you can just clone and build the project as a ROS package.
 
 ```sh
-git clone https://bitbucket.org/imt-mobisyst/mb6-tbot src/tbot
-cd src/tbot
+git clone https://bitbucket.org/imt-mobisyst/mb6-tbot pkg-tbot
+cd pkg-tbot
 ./script/build.sh
 ```
 
