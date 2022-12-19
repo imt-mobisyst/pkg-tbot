@@ -10,7 +10,8 @@ sudo apt update
 sudo apt upgrade -y
 sudo apt install -y git tmux git-lfs openssh-server sshfs \
     build-essential cmake \
-    python3 python3-pip
+    python3 python3-pip \
+    gnome-tweaks
 
 echo "# Git Configuration"
 echo "#----------------------------"
