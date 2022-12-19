@@ -16,9 +16,10 @@ cd dpd
 # Clone and initialize vcpkg:
 echo "## Install vcpkg"
 echo "##----------------------------"
+cd 
 
-git clone https://github.com/Microsoft/vcpkg.git
-./vcpkg/bootstrap-vcpkg.sh
+git clone https://github.com/Microsoft/vcpkg.git .vcpkg
+~/.vcpkg/bootstrap-vcpkg.sh
 
 # And finally install the realsense2 lib and tools 
 echo "## Get and Build RealSense2"
@@ -27,7 +28,7 @@ echo "##----------------------------"
 # Some dependancies:
 sudo apt install -y autoconf dh-autoreconf libudev-dev cmake
 
-./vcpkg/vcpkg install realsense2
+~/.vcpkg/vcpkg install realsense2
 #pip install pyrealsense2
 
 cd ..
