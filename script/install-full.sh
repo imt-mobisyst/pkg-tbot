@@ -35,3 +35,7 @@ bash ./script/install-gazebo.sh
 
 # Configure user bash:
 bash ./script/configure-bashrc.sh
+
+echo "#---------------------------------------------------"
+echo "# Its cool (normally) you can resart..."
+echo "#---------------------------------------------------"

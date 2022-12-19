@@ -23,7 +23,3 @@ sudo sed -i 's/m = r.search(vstr)/m = r.search(vstr.decode("utf-8"))/' /opt/ros/
 cd ..
 source /opt/ros/noetic/setup.bash
 catkin_make
-
-echo "#---------------------------------------------------"
-echo "# Its cool (normally) you can open a new terminal..."
-echo "#---------------------------------------------------"

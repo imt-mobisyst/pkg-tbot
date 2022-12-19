@@ -34,7 +34,8 @@ sudo apt install -y autoconf dh-autoreconf libudev-dev cmake
 cd ..
 ./script/setup_udev_rules.sh
 
-echo "# Install urg_node"
-echo "#----------------------------"
+echo "# Install urg_node and grant access"
+echo "#----------------------------------"
 
 sudo apt install -y ros-foxy-urg-node
+sudo usermod -a -G dialout `whoami`
