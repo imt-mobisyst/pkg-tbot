@@ -34,7 +34,12 @@ bash ./script/build.sh
 bash ./script/install-gazebo.sh
 
 # Configure user bash:
-bash ./script/configure-bashrc.sh
+cat >> ~/.bashrc << EOF
+
+# IMT MobiSyst configuration:
+source ~/ros2_ws/pkg-tbot/script/run-commands.bash
+
+EOF
 
 echo "#---------------------------------------------------"
 echo "# Its cool (normally) you can resart..."
