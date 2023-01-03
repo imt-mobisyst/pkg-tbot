@@ -20,5 +20,10 @@ def generate_launch_description():
             parameters=[{
                 "serial_port": "/dev/ttyACM0"
             }]
+        ),
+        Node(
+            package='rviz2',
+            executable='rviz2',
+            name='visualization'
         )
     ])

@@ -20,7 +20,8 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'multiplexer = tbot_pytools.multiplexer:multiplexer'
+            'multiplexer = tbot_pytools.multiplexer:multiplexer',
+            'rmove = tbot_pytools.reactive_move:move',
         ],
     },
 )
