@@ -27,21 +27,34 @@ def generate_launch_description():
                         output='screen')
 
     robot_entity = Node(package='gazebo_ros', executable='spawn_entity.py',
-                        arguments=['-entity', 'tbot', '-database', 'tbot'],
+                        arguments=['-entity', 'tbot', '-database', 'turtlebot'],
                         output='screen')
 
-    laser_link = Node(package = "tf2_ros", 
+    # BUG 
+    # robot_entity = Node(package='gazebo_ros', executable='spawn_entity.py',
+    #                     arguments=['-entity', 'tbot', '-database', 'tbot'],
+    #                     output='screen')
+
+    base_link = Node( name='static_transform_base_link_publisher', 
+                       package = "tf2_ros", 
+                       executable = "static_transform_publisher",
+                       arguments = ["0", "0", "0", "0", "0", "0", "base_footprint", "base_link"])
+
+    laser_link = Node( name='static_transform_laser_link_publisher', 
+                       package = "tf2_ros", 
                        executable = "static_transform_publisher",
                        arguments = ["0.115", "0", "0.13", "0", "0", "0", "base_link", "laser_link"])
 
-    camera_link = Node(package = "tf2_ros", 
+    camera_link = Node(name='static_transform_camera_link_publisher', 
+                       package = "tf2_ros",
                        executable = "static_transform_publisher",
                        arguments = ["0.0", "0", "0.3", "0", "0", "0", "base_link", "camera_link"])
 
     return LaunchDescription([
-        declare_world_cmd,
         gazebo,
+        willowgarage_entity,
         robot_entity,
+        base_link,
         laser_link,
         camera_link
     ])

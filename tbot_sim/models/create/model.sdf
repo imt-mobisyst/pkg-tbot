@@ -1,19 +1,18 @@
 <?xml version="1.0" ?>
 <sdf version="1.5">
-  <model name="kobuki">
-
+  <model name="create">
     <link name="base">
       <inertial>
-        <pose>0.001453 -0.000453 0.03 0 0 0</pose>
+        <pose>0.001453 -0.000453 0.029787 0 0 0</pose>
         <inertia>
-          <ixx>0.019995</ixx>
-          <ixy>0.0</ixy>
-          <ixz>0.0</ixz>
-          <iyy>0.019995</iyy>
-          <iyz>0.0</iyz>
-          <izz>0.03675</izz>
+          <ixx>0.058640</ixx>
+          <ixy>0.000124</ixy>
+          <ixz>0.000615</ixz>
+          <iyy>0.058786</iyy>
+          <iyz>0.000014</iyz>
+          <izz>1.532440</izz>
         </inertia>
-        <mass>2.4000</mass>
+        <mass>2.234000</mass>
       </inertial>
       <collision name="base_collision">
         <pose>0 0 0.047800 0 0 0</pose>
@@ -25,21 +24,19 @@
         </geometry>
       </collision>
       <visual name="base_visual">
-        <pose>0 0 0.06 0 0 0</pose>
+        <pose>0 0 0.047800 0 0 0</pose>
         <geometry>
           <mesh>
-            <uri>model://kobuki/meshes/main_body.dae</uri>
+            <uri>model://create/meshes/create_body.dae</uri>
           </mesh>
         </geometry>
       </visual>
-      
       <collision name="front_wheel_collision">
-        <pose>0.115 0 0.017000 0 1.570700 1.570700</pose>
+        <pose>0.130000 0 0.017000 0 1.570700 1.570700</pose>
         <geometry>
-          <cylinder>
-            <radius>0.017</radius>
-            <length>0.0176</length>
-          </cylinder>
+          <sphere>
+            <radius>0.018000</radius>
+          </sphere>
         </geometry>
         <surface>
           <friction>
@@ -53,30 +50,20 @@
           </friction>
         </surface>
       </collision>
-
-      <!-- <visual name="front_wheel_visual">
-        <pose>0.115 0 0.017000 0 1.570700 1.570700</pose>
+      <visual name="front_wheel_visual">
+        <pose>0.130000 0 0.017000 0 1.570700 1.570700</pose>
         <geometry>
-          <cylinder>
-            <radius>0.017</radius>
-            <length>0.0176</length>
-          </cylinder>
+          <sphere>
+            <radius>0.009000</radius>
+          </sphere>
         </geometry>
-        <material>
-          <ambient>0.1 0.1 0.1 1</ambient>
-          <diffuse>0.1 0.1 0.2 1</diffuse>
-          <specular>0 0 0 0</specular>
-          <emissive>0 0 0 1</emissive>
-        </material> 
-      </visual> -->
-
+      </visual>
       <collision name="rear_wheel_collision">
-        <pose>-0.138 0 0.017 0 1.5707 1.5707</pose>
+        <pose>-0.13 0 0.017 0 1.5707 1.5707</pose>
         <geometry>
-          <cylinder>
-            <radius>0.017</radius>
-            <length>0.0176</length>
-          </cylinder>
+          <sphere>
+            <radius>0.015000</radius>
+          </sphere>
         </geometry>
         <surface>
           <friction>
@@ -90,23 +77,14 @@
           </friction>
         </surface>
       </collision>
-
-      <!-- <visual name="rear_wheel_visual">
-        <pose>-0.138 0 0.017 0 1.5707 1.5707</pose>
+      <visual name="rear_wheel_visual">
+        <pose>-0.130000 0 0.017000 0 1.570700 1.570700</pose>
         <geometry>
-          <cylinder>
-            <radius>0.017</radius>
-            <length>0.0176</length>
-          </cylinder>
+          <sphere>
+            <radius>0.007500</radius>
+          </sphere>
         </geometry>
-        <material>
-          <ambient>0.1 0.1 0.1 1</ambient>
-          <diffuse>0.1 0.1 0.2 1</diffuse>
-          <specular>0 0 0 0</specular>
-          <emissive>0 0 0 1</emissive>
-        </material> 
-      </visual> -->
-
+      </visual>
       <sensor name="left_cliff_sensor" type="ray">
         <pose>0.070000 0.140000 0.027000 0 1.570790 0</pose>
         <ray>
@@ -198,7 +176,6 @@
         </ray>
       </sensor>
     </link>
-
     <link name="left_wheel">
       <pose>0 0.130000 0.032000 0 0 0</pose>
       <inertial>
@@ -212,7 +189,7 @@
         </inertia>
         <mass>0.010000</mass>
       </inertial>
-      <collision name="left_wheel_collision">
+      <collision name="collision">
         <pose>0 0 0 0 1.570700 1.570700</pose>
         <geometry>
           <cylinder>
@@ -223,8 +200,8 @@
         <surface>
           <friction>
             <ode>
-              <mu>1.0</mu>
-              <mu2>1.0</mu2>
+              <mu>15</mu>
+              <mu2>15</mu2>
               <fdir1>0 0 0</fdir1>
               <slip1>0</slip1>
               <slip2>0</slip2>
@@ -235,17 +212,13 @@
       <visual name="visual">
         <pose>0 0 0 0 1.570700 1.570700</pose>
         <geometry>
-          <!-- <cylinder>
+          <cylinder>
             <radius>0.033000</radius>
             <length>0.023000</length>
-          </cylinder> -->
-          <mesh>
-            <uri>model://kobuki/meshes/wheel.dae</uri>
-          </mesh>
+          </cylinder>
         </geometry>
       </visual>
     </link>
-
     <link name="right_wheel">
       <pose>0 -0.130000 0.032000 0 0 0</pose>
       <inertial>
@@ -259,7 +232,7 @@
         </inertia>
         <mass>0.010000</mass>
       </inertial>
-      <collision name="right_wheel_collision">
+      <collision name="collision">
         <pose>0 0 0 0 1.570700 1.570700</pose>
         <geometry>
           <cylinder>
@@ -271,7 +244,7 @@
           <friction>
             <ode>
               <mu>15</mu>
-              <mu2>40</mu2>
+              <mu2>15</mu2>
               <fdir1>0 0 0</fdir1>
               <slip1>0</slip1>
               <slip2>0</slip2>
@@ -282,17 +255,13 @@
       <visual name="visual">
         <pose>0 0 0 0 1.570700 1.570700</pose>
         <geometry>
-          <!-- <cylinder>
+          <cylinder>
             <radius>0.033000</radius>
             <length>0.023000</length>
-          </cylinder> -->
-          <mesh>
-            <uri>model://kobuki/meshes/wheel.dae</uri>
-          </mesh>
+          </cylinder>
         </geometry>
       </visual>
     </link>
-
     <joint name="left_wheel_joint" type="revolute">
       <parent>base</parent>
       <child>left_wheel</child>
@@ -301,7 +270,6 @@
         <use_parent_model_frame>true</use_parent_model_frame>
       </axis>
     </joint>
-
     <joint name="right_wheel_joint" type="revolute">
       <parent>base</parent>
       <child>right_wheel</child>
@@ -310,18 +278,18 @@
         <use_parent_model_frame>true</use_parent_model_frame>
       </axis>
     </joint>
-    
-    <plugin name="diff_drive" filename="libgazebo_ros_diff_drive.so">
-    <update_rate>20</update_rate>
+
+  <plugin name="diff_drive" filename="libgazebo_ros_diff_drive.so">
+    <update_rate>30</update_rate>
 
     <!-- wheels -->
     <left_joint>left_wheel_joint</left_joint>
     <right_joint>right_wheel_joint</right_joint>
 
-    <wheel_separation>0.23</wheel_separation>
-    <wheel_diameter>0.07</wheel_diameter>
+    <wheel_separation>0.26</wheel_separation>
+    <wheel_diameter>0.066</wheel_diameter>
     <max_wheel_torque>20</max_wheel_torque>
-    <max_wheel_acceleration>1.0</max_wheel_acceleration>
+    <max_wheel_acceleration>1.2</max_wheel_acceleration>
 
     <!-- Receive velocity commands on this ROS topic -->
     <command_topic>cmd_vel</command_topic>
@@ -334,7 +302,7 @@
     <robot_base_frame>base_footprint</robot_base_frame>
 
     <!-- Odometry source, 0 for ENCODER, 1 for WORLD, defaults to WORLD -->
-    <odometry_source>0</odometry_source>
+    <!-- <odometry_source>0</odometry_source> -->
 
     <!-- Change the ROS topic we will publish the odometry data to -->
     <!-- <ros>
