@@ -7,6 +7,11 @@ from std_msgs.msg import String
 from geometry_msgs.msg import Point32, Twist
 from sensor_msgs.msg import LaserScan, PointCloud
 
+STATE_STOP= 0
+STATE_MOVE= 1
+STATE_LEFT= 2
+STATE_RIGHT= 3
+
 class ReactiveMoveNode(Node):
 
     def __init__(self):
@@ -17,6 +22,7 @@ class ReactiveMoveNode(Node):
         self.velocity_publisher= self.create_publisher(Twist, '/multi/cmd_nav', 10)
         self.control_publisher = self.create_publisher(PointCloud, '/control', 10)
         self.create_timer(0.02, self.control_callback)
+        self.state= STATE_STOP
     
     def scan_callback(self, scanMsg):
         self.obstacles= PointCloud()
@@ -39,10 +45,12 @@ class ReactiveMoveNode(Node):
     def control_callback(self):
         # Security
         if len(self.obstacles.points) == 0 :
-            print("empty")
+            print("Stop")
+            self.state= STATE_STOP
+            self.velocity_publisher.publish(Twist())
             return
 
-        # Interpretation
+        # Scan Interpretation
         focus= PointCloud()
         focus.header= self.obstacles.header
 
@@ -56,18 +64,30 @@ class ReactiveMoveNode(Node):
                     obstacleLeft= True
                 focus.points.append( obs )
         
-        # Control
+        # State estimation 
         self.control_publisher.publish( focus )
-        velo = Twist()
         if obstacleLeft :
-            print("go right!")
-            velo.angular.z= (float)(-1.0)
+            if self.state in [ STATE_STOP, STATE_MOVE ] :
+                print("go right!")
+                self.state= STATE_RIGHT
         elif obstacleRight :
+            if self.state in [ STATE_STOP, STATE_MOVE ] :
+                print("go left!")
+                self.state= STATE_LEFT
             print("go left!")
+        elif self.state != STATE_MOVE :
+               print("move move move")
+               self.state= STATE_MOVE
+        
+        #Control
+        velo = Twist()
+        if self.state == STATE_RIGHT :
+            velo.angular.z= (float)(-1.0)
+        elif self.state == STATE_LEFT :
             velo.angular.z= (float)(1.0)
-        else :
-            print("move move move")
+        elif self.state == STATE_MOVE :
             velo.linear.x= (float)(0.1)
+
         self.velocity_publisher.publish(velo)
 
 def move(args=None):
