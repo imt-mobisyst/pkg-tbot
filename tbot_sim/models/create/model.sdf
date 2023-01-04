@@ -309,6 +309,5 @@
       <remapping>odom:=odom</remapping>
     </ros> -->
   </plugin>
-
   </model>
 </sdf>

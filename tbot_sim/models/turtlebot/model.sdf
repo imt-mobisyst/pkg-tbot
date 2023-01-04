@@ -443,16 +443,13 @@
         <use_parent_model_frame>true</use_parent_model_frame>
       </axis>
     </joint>
-
-    <!-- *********************** HOKUYO ***************************    -->
-  <include>
-    <uri>model://hokuyo</uri>
-    <pose>0.115 0.0 0.16 0 0 0</pose>
-  </include>
-  <joint name="hokuyo_joint" type="fixed">
-    <child>hokuyo::link</child>
-    <parent>create::base</parent>
-  </joint>
-
+    <include>
+      <uri>model://hokuyo</uri>
+      <pose>0.095 0.0 0.105 0 0 0</pose>
+    </include>
+    <joint name="hokuyo_joint" type="fixed">
+      <child>hokuyo::link</child>
+      <parent>create::base</parent>
+    </joint>
   </model>
 </sdf>
