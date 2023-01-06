@@ -45,10 +45,10 @@ def generate_launch_description():
             parameters=[],
             arguments=['-entity','tbot', '-database', 'tbot']),
 
-        Node(
-            package='rviz2',
-            executable='rviz2',
-            name="rviz2",
-            output='screen'),
+        # Node(
+        #     package='rviz2',
+        #     executable='rviz2',
+        #     name="rviz2",
+        #     output='screen'),
 
 ])
