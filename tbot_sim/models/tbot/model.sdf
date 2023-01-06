@@ -66,28 +66,21 @@
     <pose>0.0 0 0.295 0 0 0</pose>
   </include>
 
-  <!-- <joint name="kobuki_rack" type="revolute">
-    <parent>kobuki::base</parent>
+  <joint name="kobuki_rack" type="fixed">
+    <parent>kobuki_model::base_link</parent>
     <child>rack</child>
     <axis>
       <xyz>0 0 1</xyz>
-      <limit>
-        <lower>0</lower>
-        <upper>0</upper>
-      </limit>
       <use_parent_model_frame>true</use_parent_model_frame>
     </axis>
-  </joint> -->
+  </joint>
 
-  <joint name="kinect_rack" type="revolute">
+  <joint name="kinect_rack" type="fixed">
     <parent>kinect::link</parent>
     <child>rack</child>
+    <pose>-0.056 0.0 0.0 0 0 0</pose>
     <axis>
       <xyz>0 0 1</xyz>
-      <limit>
-        <lower>0</lower>
-        <upper>0</upper>
-      </limit>
       <use_parent_model_frame>true</use_parent_model_frame>
     </axis>
   </joint>
