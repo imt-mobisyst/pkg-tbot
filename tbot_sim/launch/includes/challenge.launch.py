@@ -21,14 +21,14 @@ def generate_launch_description():
 
     return LaunchDescription([
         DeclareLaunchArgument(
-           'world', 
+           'world',
            default_value='challenge-1',
            description='World file to load'),
- 
+
         DeclareLaunchArgument('world_filepath', default_value=[
             TextSubstitution(text=worlds_model_path),
-            TextSubstitution(text='/'), 
-            world_arg, 
+            TextSubstitution(text='/'),
+            world_arg,
             TextSubstitution(text='.world')]),
 
         # Launch Gazebo
@@ -36,6 +36,12 @@ def generate_launch_description():
             PythonLaunchDescriptionSource([launch_file_dir, '/gazebo.launch.py']),
             launch_arguments={'use_sim_time': use_sim_time, 'world' : world_filepath}.items(),
         ),
+
+        # Spawn tbot
+        # IncludeLaunchDescription(
+        #     PythonLaunchDescriptionSource([launch_file_dir, '/spawn_tbot.launch.py']),
+        #     launch_arguments={'use_sim_time': use_sim_time}.items(),
+        # ),
 
         # Spawn kobuki
         IncludeLaunchDescription(

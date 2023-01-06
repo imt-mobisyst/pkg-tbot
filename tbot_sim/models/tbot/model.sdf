@@ -2,121 +2,6 @@
 <sdf version="1.5">
   <model name="tbot">
     <link name="rack">
-      <inertial>
-        <pose>0.001453 -0.000453 0.032 0 0 0</pose>
-        <inertia>
-          <ixx>0.058640</ixx>
-          <ixy>0.000124</ixy>
-          <ixz>0.000615</ixz>
-          <iyy>0.058786</iyy>
-          <iyz>0.000014</iyz>
-          <izz>1.532440</izz>
-        </inertia>
-        <mass>2.234000</mass>
-      </inertial>
-      
-       <!-- *********************** PLATE 0 ***************************    -->
-      <!-- <collision name="plate_0_collision">
-        <pose>-0.002660 0 0.17 0 0 0</pose>
-        <geometry>
-          <box>
-            <size>0.314856 0.314856 0.006401</size>
-          </box>
-        </geometry>
-      </collision>
-      <visual name="plate_0_visual">
-        <pose>-0.002660 0 0.17 0 0 0</pose>
-        <geometry>
-          <mesh>
-            <uri>model://tbot/meshes/plate_middle.dae</uri>
-          </mesh>
-          <box>
-            <size>0.314856 0.314856 0.006401</size>
-          </box>
-          <material>
-          <ambient>0 0 0 1</ambient>
-          <diffuse>0 0 0 1</diffuse>
-          <specular>0 0 0 0</specular>
-          <emissive>0 0 0 1</emissive>
-        </material>
-        </geometry>
-      </visual>
-
-      <collision name="standoff_1_plate_0_collision">
-        <pose>-0.06 0.12 0.131 0 0 0</pose>
-        <geometry>
-          <cylinder>
-            <radius>0.006</radius>
-            <length>0.071</length>
-          </cylinder>
-        </geometry>
-      </collision>
-      <visual name="standoff_1_plate_0_visual">
-        <pose>-0.06 0.12 0.131 0 0 0</pose>
-        <geometry>
-          <cylinder>
-            <radius>0.006</radius>
-            <length>0.071</length>
-          </cylinder>
-        </geometry>
-        <material>
-          <ambient>0 0 0 1</ambient>
-          <diffuse>0 0 0 1</diffuse>
-          <specular>0 0 0 0</specular>
-          <emissive>0 1 0 1</emissive>
-        </material>
-      </visual>
-
-      <collision name="standoff_2_plate_0_collision">
-        <pose>-0.06 -0.12 0.131 0 0 0</pose>
-        <geometry>
-          <cylinder>
-            <radius>0.006</radius>
-            <length>0.071</length>
-          </cylinder>
-        </geometry>
-      </collision>
-      <visual name="standoff_2_plate_0_visual">
-        <pose>-0.06 -0.12 0.131 0 0 0</pose>
-        <geometry>
-          <cylinder>
-            <radius>0.006</radius>
-            <length>0.071</length>
-          </cylinder>
-        </geometry>
-        <material>
-          <ambient>0 0 0 1</ambient>
-          <diffuse>0 0 0 1</diffuse>
-          <specular>0 0 0 0</specular>
-          <emissive>0 1 0 1</emissive>
-        </material>
-      </visual>
-
-      <collision name="standoff_3_plate_0_collision">
-        <pose>0.075 0 0.131 0 0 0</pose>
-        <geometry>
-          <cylinder>
-            <radius>0.006</radius>
-            <length>0.071</length>
-          </cylinder>
-        </geometry>
-      </collision>
-      <visual name="standoff_3_plate_0_visual">
-        <pose>0.075 0 0.131 0 0 0</pose>
-        <geometry>
-          <cylinder>
-            <radius>0.006</radius>
-            <length>0.071</length>
-          </cylinder>
-        </geometry>
-        <material>
-          <ambient>0 0 0 1</ambient>
-          <diffuse>0 0 0 1</diffuse>
-          <specular>0 0 0 0</specular>
-          <emissive>0 1 0 1</emissive>
-        </material>
-      </visual> -->
-
       <!-- *********************** KINECT ***************************    -->
       <collision name="standoff_0_kinect_collision">
         <pose>-0.025 -0.077 0.186 0 0 0</pose>
@@ -167,12 +52,12 @@
           <emissive>0 0 0 0</emissive>
         </material>
       </visual>
-    
+
   </link> <!-- end tbot rack-->
 
   <!-- *********************** KOBUKI ***************************    -->
   <include>
-    <uri>model://kobuki</uri>
+    <uri>model://kobuki_model</uri>
   </include>
 
   <!-- *********************** KINECT ***************************    -->
@@ -180,8 +65,8 @@
     <uri>model://kinect</uri>
     <pose>0.0 0 0.295 0 0 0</pose>
   </include>
-  
-  <joint name="kobuki_rack" type="revolute">
+
+  <!-- <joint name="kobuki_rack" type="revolute">
     <parent>kobuki::base</parent>
     <child>rack</child>
     <axis>
@@ -192,8 +77,8 @@
       </limit>
       <use_parent_model_frame>true</use_parent_model_frame>
     </axis>
-  </joint>
-  
+  </joint> -->
+
   <joint name="kinect_rack" type="revolute">
     <parent>kinect::link</parent>
     <child>rack</child>
@@ -205,16 +90,6 @@
       </limit>
       <use_parent_model_frame>true</use_parent_model_frame>
     </axis>
-  </joint>
-
-  <!-- *********************** HOKUYO ***************************    -->
-  <include>
-    <uri>model://hokuyo</uri>
-    <pose>0.115 0.0 0.13 0 0 0</pose>
-  </include>
-  <joint name="hokuyo_joint" type="fixed">
-    <child>hokuyo::link</child>
-    <parent>kobuki::base</parent>
   </joint>
 
   </model>
