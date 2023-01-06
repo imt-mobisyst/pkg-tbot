@@ -25,7 +25,7 @@ echo \
 sudo apt update
 sudo apt install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
 
-sudo echo "\n%sudo   ALL=(ALL) NOPASSWD: /usr/bin/docker\n" >> /etc/sudoers
+echo "%sudo   ALL=(ALL) NOPASSWD: /usr/bin/docker" | sudo tee /etc/sudoers > /dev/null
 
 # pull kobuki image:
 sudo docker pull lozenge14/imt-mobisyst:u16kobuki

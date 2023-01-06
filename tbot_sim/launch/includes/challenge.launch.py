@@ -38,16 +38,16 @@ def generate_launch_description():
         ),
 
         # Spawn tbot
-        # IncludeLaunchDescription(
-        #     PythonLaunchDescriptionSource([launch_file_dir, '/spawn_tbot.launch.py']),
-        #     launch_arguments={'use_sim_time': use_sim_time}.items(),
-        # ),
-
-        # Spawn kobuki
         IncludeLaunchDescription(
-            PythonLaunchDescriptionSource([launch_file_dir, '/spawn_kobuki.launch.py']),
+            PythonLaunchDescriptionSource([launch_file_dir, '/spawn_tbot.launch.py']),
             launch_arguments={'use_sim_time': use_sim_time}.items(),
         ),
+
+        # Spawn kobuki
+        # IncludeLaunchDescription(
+        #     PythonLaunchDescriptionSource([launch_file_dir, '/spawn_kobuki.launch.py']),
+        #     launch_arguments={'use_sim_time': use_sim_time}.items(),
+        # ),
 
         # Spawn create
         # IncludeLaunchDescription(

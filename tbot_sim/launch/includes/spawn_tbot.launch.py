@@ -29,11 +29,26 @@ def generate_launch_description():
             parameters=[{'use_sim_time': use_sim_time,
                 'robot_description': urdf}]),
 
+        # TODO: spawn tbot from URDF into gazebo instead of SDF
+        # https://automaticaddison.com/how-to-load-a-urdf-file-into-gazebo-ros-2/
+        # Node(
+        #     package='gazebo_ros', 
+        #     executable='spawn_entity.py',
+        #     arguments=['-entity', 'tbot', 
+        #                 '-topic', 'robot_description'],
+        #     output='screen')
         Node(
             package='gazebo_ros',
             executable='spawn_entity.py',
             name="spawn_kobuki",
             output='screen',
             parameters=[],
-            arguments=['-entity','kobuki', '-database', 'tbot'])
+            arguments=['-entity','tbot', '-database', 'tbot']),
+
+        Node(
+            package='rviz2',
+            executable='rviz2',
+            name="rviz2",
+            output='screen'),
+
 ])
