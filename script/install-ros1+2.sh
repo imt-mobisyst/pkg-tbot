@@ -2,7 +2,6 @@
 
 echo "## Dependencies"
 echo "##----------------------------"
-
 sudo apt update
 sudo apt install -y curl gnupg2 lsb-release
 
