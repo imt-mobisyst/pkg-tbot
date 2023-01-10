@@ -14,5 +14,5 @@ alias rosify2="source /opt/ros/foxy/setup.bash && source $HOME/ros2_ws/install/s
 alias imt-ip='ip a | egrep -o "inet 10\.[0-9|\.]+" | egrep -o "[1-9][0-9]*\.[1-9][0-9]*\.[1-9][0-9]*\.[1-9][0-9]*"'
 
 # Prompt
-PS1='\[\033[01;32m\]\h\[\033[00m\]@\[\033[01;32m\]`imt-ip`\[\033[00m\](\[\033[01;31m\]ros$ROS_VERSION\033[00m\]):\[\033[01;34m\]\w\[\033[00m\]\n$ '
+PS1='\[\033[01;32m\]\h\[\033[00m\]|\[\033[01;32m\]`imt-ip`\[\033[00m\](\[\033[01;31m\]ros$ROS_VERSION\033[00m\]):\[\033[01;34m\]\w\[\033[00m\]\n$ '
 
