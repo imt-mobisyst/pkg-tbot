@@ -2,6 +2,8 @@
 
 sudo apt install -y ros-humble-ecl-build
 
+sudo cp /home/bot/ros2_ws/kobuki_driver/kobuki_core/60-kobuki.rules /lib/udev/rules.d/
+
 # cd ~/ros2_ws/
 
 # git clone -b humble https://github.com/ros/diagnostics.git
