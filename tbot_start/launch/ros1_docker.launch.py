@@ -11,7 +11,10 @@ def generate_launch_description():
         Node(
             package='tbot_pytools',
             executable='multiplexer',
-            name='multiplexer'
+            name='multiplexer',
+            remappings=[
+                ("cmd_vel", "mobile_base/commands/velocity")
+            ]),
         ),
         Node(
             package='urg_node',
@@ -27,3 +30,21 @@ def generate_launch_description():
             name='visualization'
         )
     ])
+
+
+# $ ros2 topic list
+# /clicked_point
+# /cmd_vel
+# /diagnostics
+# /goal_pose
+# /initialpose
+# /laser_status
+# /mobile_base/commands/velocity
+# /multi/cmd_nav
+# /multi/cmd_teleop
+# /parameter_events
+# /rosout
+# /scan
+# /tf
+# /tf_static
+

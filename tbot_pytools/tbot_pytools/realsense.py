@@ -14,37 +14,39 @@ from cv_bridge import CvBridge
 
 # Realsense Node:
 class Realsense(Node):
-    def __init__(self, fps= 60):
+    def __init__(self):
         super().__init__('realsense')
-        self.img_pub= self.create_publisher( Image, "img", 10)
-        self.depth_pub= self.create_publisher( Image, "depth", 10)
 
         # Configure depth and color streams
         self.pipeline = rs.pipeline()
-        config = rs.config()
+        self.config = rs.config()
         self.bridge=CvBridge()
 
         # Get device product line for setting a supporting resolution
         pipeline_wrapper = rs.pipeline_wrapper( self.pipeline )
-        device = config.resolve(pipeline_wrapper).get_device()
+        device = self.config.resolve(pipeline_wrapper).get_device()
 
+        self.sensors= []
         print( f"Connect: { str(device.get_info(rs.camera_info.product_line))}" )
-        found_rgb = True
         for s in device.sensors:
-            print( "Name:" + s.get_info(rs.camera_info.name) )
-            if s.get_info(rs.camera_info.name) == 'RGB Camera':
-                found_rgb = True
+            info= s.get_info(rs.camera_info.name)
+            print( "Name: " + info )
+            self.sensors.append( info )
 
-        if not (found_rgb):
-            print("Depth camera equired !!!")
+    def connect_imgs(self, fps= 60):
+        if ("Stereo Module" not in self.sensors) or ("RGB Camera" not in self.sensors) :
             exit(0)
+        
+        # prepare publisher:
+        self.img_pub= self.create_publisher( Image, "img", 10)
+        self.depth_pub= self.create_publisher( Image, "depth", 10)
 
         # enable stream:
-        config.enable_stream(rs.stream.color, 848, 480, rs.format.bgr8, fps)
-        config.enable_stream(rs.stream.depth, 848, 480, rs.format.z16, fps)
+        self.config.enable_stream(rs.stream.color, 848, 480, rs.format.bgr8, fps)
+        self.config.enable_stream(rs.stream.depth, 848, 480, rs.format.z16, fps)
 
         # Start streaming
-        self.pipeline.start(config)
+        self.pipeline.start(self.config)
 
     def read_imgs(self):
         # Wait for a coherent tuple of frames: depth, color and accel
@@ -63,14 +65,13 @@ class Realsense(Node):
 
         msg_image = self.bridge.cv2_to_imgmsg( self.color_image,"bgr8" )
         msg_image.header.stamp = self.get_clock().now().to_msg()
-        msg_image.header.frame_id = "image"
+        msg_image.header.frame_id = "camera_link"
         self.img_pub.publish(msg_image)
 
         msg_depth = self.bridge.cv2_to_imgmsg(depth_colormap,"bgr8")
         msg_depth.header.stamp = msg_image.header.stamp
-        msg_depth.header.frame_id = "depth"
+        msg_depth.header.frame_id = "camera_link"
         self.depth_pub.publish(msg_depth)
-
 
     def show_imgs(self):
         # Apply colormap on depth image (image must be converted to 8-bit per pixel first)
@@ -83,6 +84,25 @@ class Realsense(Node):
         cv2.namedWindow('RealSense', cv2.WINDOW_AUTOSIZE)
         cv2.imshow('RealSense', images)
         cv2.waitKey(1)
+
+    def connect_imu(self):
+        if ("Motion Module" not in self.sensors) :
+            exit(0)
+        
+        # prepare publisher:
+        self.imu_pub= self.create_publisher( Image, "img", 10)
+
+        # enable stream:
+        self.config.enable_stream(rs.stream.accel)
+        self.config.enable_stream(rs.stream.gyro)
+
+        # Start streaming
+        self.pipeline.start(self.config)
+
+    def read_imu(self):
+        # Wait for a coherent tuple of frames: depth, color and accel
+        frames = self.pipeline.wait_for_frames()
+
 
 # Catch Interuption signal:
 isOk= True
@@ -98,10 +118,11 @@ signal.signal(signal.SIGINT, signalInteruption)
 def process_img(args=None):
     rclpy.init(args=args)
     rsNode= Realsense()
+    rsNode.connect_imgs()
     while isOk:
         rsNode.read_imgs()
         rsNode.publish_imgs()
-        rclpy.spin_once(rsNode, timeout_sec=0.001)
+        rclpy.spin_once(rsNode, timeout_sec=0.01)
     # Stop streaming
     print("Ending...")
     rsNode.pipeline.stop()
