@@ -6,7 +6,7 @@ from geometry_msgs.msg import Twist
 
 class Multiplexer(Node):
 
-    def __init__( self, MsgType= Twist, inTopics=['/multi/cmd_nav', '/multi/cmd_teleop'], outTopics=['/cmd_vel', '/mobile_base/commands/velocity'] ):
+    def __init__( self, MsgType= Twist, inTopics=['/multi/cmd_nav', '/multi/cmd_teleop'], outTopics=['/cmd_vel'] ):
         super().__init__('multiplexer')
         callbacks= [
             self.cmd_1_callback, self.cmd_2_callback, self.cmd_3_callback, self.cmd_4_callback,
@@ -15,7 +15,7 @@ class Multiplexer(Node):
         callbacks= callbacks[:len(inTopics)]
         for topic, callback in zip(inTopics, callbacks) :
             self.create_subscription( MsgType, topic, callback, 10)
-        self.create_timer(0.1, self.cmd_0)
+        #self.create_timer(0.1, self.cmd_0)
         self.hand= 0
         self.t= time.time()
 

@@ -17,22 +17,21 @@ echo "# Ubuntu 22.04"
 echo "#----------------------------"
 bash ./script/prepare-22.04.sh
 
-echo "# ROS et Docker"
+echo "# ROS et Kobuki"
 echo "#----------------------------"
-bash ./script/install-ros.sh
-bash ./script/install-docker.sh
+#bash ./script/install-ros1+2.sh
+#bash ./script/install-docker.sh
+bash ./script/install-ros2.sh
+bash ./script/install-Kobuki_ros.sh
 
 echo "# Extra equipments"
 echo "#----------------------------"
 bash ./script/install-extra.sh
+# bash ./script/install-gazebo.sh
 
 echo "# And finally build it"
 echo "#----------------------------"
 bash ./script/build.sh
-
-# Make Gazebo :
-# bash ./script/install-gazebo.sh
-
 
 # Configure user bash:
 cat >> ~/.bashrc << EOF
