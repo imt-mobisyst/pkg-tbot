@@ -1,0 +1,29 @@
+
+
+- git: {
+    local-name: diagnostics, version: b0f508f9194abe50d87cd65024ce18253e68789c, 
+    uri: 'https://github.com/ros/diagnostics.git'}
+
+- git: {
+    local-name: ecl_core, version: 9d1c49c882c57668f3c46adb2a1a38c2d0957e59, 
+    uri: 'https://github.com/stonier/ecl_core.git'}
+
+- git: {
+    local-name: ecl_lite, version: f9b8aa04c97ea332ae8ea7e052a31f7ec2670c9a, 
+    uri: 'https://github.com/stonier/ecl_lite.git'}
+
+- git: {
+    local-name: kobuki_core, version: e2f0feac0f7a9964d021ac3241b7663f7728d5b9, 
+    uri: 'https://github.com/kobuki-base/kobuki_core.git'}
+
+- git: {
+    local-name: kobuki_ros, version: a54e89226bc5b6d6b623ee2b1a50632ff5a781e4, 
+    uri: 'https://github.com/kobuki-base/kobuki_ros.git'}
+
+- git: {
+    local-name: kobuki_ros_interfaces, version: 7711d4fbec13c69bcf6477ce8e446c3ccca33113, 
+    uri: 'https://github.com/kobuki-base/kobuki_ros_interfaces.git'}
+
+- git: {
+    local-name: sophus, version: caf27cf918b180852f55e4395139aa30397ed0a2, 
+    uri: 'https://github.com/strasdat/Sophus.git'}
