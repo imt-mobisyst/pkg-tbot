@@ -22,7 +22,7 @@ setup(
         'console_scripts': [
             'multiplexer = tbot_pytools.multiplexer:multiplexer',
             'rmove = tbot_pytools.reactive_move:move',
-            'canera = tbot_pytools.realsense:process_img',
+            'camera = tbot_pytools.realsense:process_img',
         ],
     },
 )
