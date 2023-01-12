@@ -33,7 +33,9 @@ find_package(ecl_time REQUIRED)
 
 ament_package_xml()
 ecl_enable_cxx14_compiler()
-ecl_enable_cxx_warnings()
+#ecl_enable_cxx_warnings()
+# remove -Werror because Sophus dependency uses a GNU extension for variadic macros
+# SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -std=c++14 -Wno-deprecated-declarations -Wno-variadic-macros -ftemplate-backtrace-limit=0")
 
 ##############################################################################
 # Sources
