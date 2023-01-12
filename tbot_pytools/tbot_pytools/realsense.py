@@ -85,25 +85,6 @@ class Realsense(Node):
         cv2.imshow('RealSense', images)
         cv2.waitKey(1)
 
-    def connect_imu(self):
-        if ("Motion Module" not in self.sensors) :
-            exit(0)
-        
-        # prepare publisher:
-        self.imu_pub= self.create_publisher( Image, "img", 10)
-
-        # enable stream:
-        self.config.enable_stream(rs.stream.accel)
-        self.config.enable_stream(rs.stream.gyro)
-
-        # Start streaming
-        self.pipeline.start(self.config)
-
-    def read_imu(self):
-        # Wait for a coherent tuple of frames: depth, color and accel
-        frames = self.pipeline.wait_for_frames()
-
-
 # Catch Interuption signal:
 isOk= True
 

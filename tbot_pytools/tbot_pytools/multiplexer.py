@@ -6,7 +6,7 @@ from geometry_msgs.msg import Twist
 
 class Multiplexer(Node):
 
-    def __init__( self, MsgType= Twist, inTopics=['/multi/cmd_nav', '/multi/cmd_teleop'], outTopics=['/cmd_vel'] ):
+    def __init__( self, MsgType= Twist, inTopics=['/multi/cmd_nav', '/multi/cmd_teleop'], outTopic='/cmd_vel' ):
         super().__init__('multiplexer')
         callbacks= [
             self.cmd_1_callback, self.cmd_2_callback, self.cmd_3_callback, self.cmd_4_callback,
@@ -15,14 +15,16 @@ class Multiplexer(Node):
         callbacks= callbacks[:len(inTopics)]
         for topic, callback in zip(inTopics, callbacks) :
             self.create_subscription( MsgType, topic, callback, 10)
-        #self.create_timer(0.1, self.cmd_0)
+ 
         self.hand= 0
         self.t= time.time()
 
-        self.myPublishers= []
-        for topic in outTopics :
-            self.myPublishers.append( self.create_publisher( MsgType, topic, 10) )
+        self.myPublisher= self.create_publisher( MsgType, outTopic, 10)
 
+    def activateSecurity(self):
+        self.create_timer(0.1, self.cmd_0)
+
+    # CallBack gestion:
     def cmd_callback(self, prevalence, cmdMsg):
         t= time.time()
         if prevalence >= self.hand or t - self.t > 1.0 :
@@ -60,6 +62,34 @@ class Multiplexer(Node):
 
     def cmd_8_callback(self, cmdMsg):
         return self.cmd_callback(8, cmdMsg)
+
+def multiplexer(args=None):
+    # Initialize ROS
+    rclpy.init(args=args)
+
+    # Initialize ScanInterperter
+    node = Multiplexer()
+    
+    # infinite Loop
+    rclpy.spin(node)
+    
+    # Clean end
+    node.destroy_node()
+    rclpy.shutdown()
+
+def multiplexer(args=None):
+    # Initialize ROS
+    rclpy.init(args=args)
+
+    # Initialize ScanInterperter
+    node = Multiplexer()
+    
+    # infinite Loop
+    rclpy.spin(node)
+    
+    # Clean end
+    node.destroy_node()
+    rclpy.shutdown()
 
 def multiplexer(args=None):
     # Initialize ROS
