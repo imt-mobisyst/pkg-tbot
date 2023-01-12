@@ -212,13 +212,13 @@
   <!-- kinect -->
   <joint name="kinect_joint" type="fixed">
     <parent link="base_link"/>
-    <child link="kinect_link"/>
+    <child link="camera_link"/>
     <origin xyz="-0.05 0 0.3" rpy="0 0 0"/>
     <axis xyz="0 0 0"/>
     <limit lower="0" upper="0" effort="0" velocity="0"/>
   </joint>
 
-  <link name="kinect_link">
+  <link name="camera_link">
     <inertial>
       <mass value="0.1"/>
       <origin xyz="0 0 0" rpy="0 0 0"/>
@@ -276,7 +276,7 @@
         <cameraName>camera</cameraName>
         <imageTopicName>image_raw</imageTopicName>
         <cameraInfoTopicName>camera_info</cameraInfoTopicName>
-        <frameName>kinect_link</frameName>
+        <frameName>camera_link</frameName>
         <hackBaseline>0.07</hackBaseline>
         <distortionK1>0.0</distortionK1>
         <distortionK2>0.0</distortionK2>

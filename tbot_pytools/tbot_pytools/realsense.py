@@ -65,12 +65,12 @@ class Realsense(Node):
 
         msg_image = self.bridge.cv2_to_imgmsg( self.color_image,"bgr8" )
         msg_image.header.stamp = self.get_clock().now().to_msg()
-        msg_image.header.frame_id = "image"
+        msg_image.header.frame_id = "camera_link"
         self.img_pub.publish(msg_image)
 
         msg_depth = self.bridge.cv2_to_imgmsg(depth_colormap,"bgr8")
         msg_depth.header.stamp = msg_image.header.stamp
-        msg_depth.header.frame_id = "depth"
+        msg_depth.header.frame_id = "camera_link"
         self.depth_pub.publish(msg_depth)
 
     def show_imgs(self):

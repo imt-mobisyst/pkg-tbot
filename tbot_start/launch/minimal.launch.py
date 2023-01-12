@@ -11,7 +11,7 @@ def generate_launch_description():
     tbot_start_path = get_package_share_directory('tbot_start')
     tbot_start_launch_dir = os.path.join(tbot_start_path, 'launch')
 
-    kobuki_urdf = os.path.join(get_package_share_directory('tbot_sim'),'urdf', 'kobuki_standalone.urdf')
+    kobuki_urdf = os.path.join(get_package_share_directory('tbot_sim'),'urdf', 'tbot.urdf')
     urdf = open(kobuki_urdf).read()
 
     return LaunchDescription([
@@ -32,7 +32,7 @@ def generate_launch_description():
             executable='robot_state_publisher',
             name="robot_state_publisher",
             output='screen',
-            parameters=[{'use_sim_time': 'false',
+            parameters=[{'use_sim_time': False,
                 'robot_description': urdf}]),
         # Node(
         #     package='rviz2',
