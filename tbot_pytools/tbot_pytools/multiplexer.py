@@ -32,8 +32,7 @@ class Multiplexer(Node):
                 self.get_logger().info( f"Get cmd from {prevalence}" )
             self.hand= prevalence
             self.t= t
-            for p in self.myPublishers :
-                p.publish( cmdMsg )
+            self.myPublisher.publish( cmdMsg )
 
     def cmd_0(self):
         velo= Twist()
