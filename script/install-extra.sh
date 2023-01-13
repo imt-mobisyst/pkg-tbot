@@ -34,6 +34,8 @@ sudo apt install -y autoconf dh-autoreconf libudev-dev cmake
 cd ..
 ./script/setup_udev_rules.sh
 
+pip3 install pyrealsense2
+
 echo "# Install urg_node and grant access"
 echo "#----------------------------------"
 
