@@ -1,29 +1,8 @@
 #!python3
 import time, rclpy
 from rclpy.node import Node
-import tf2_ros, PyKDL
+import tf2_ros, tf2_geometry_msgs
 from geometry_msgs.msg import Pose, PoseStamped
-
-# Supose that you install PyKDL: sudo apt install python3-pykdl
-
-def transform_to_kdl(t):
-    return PyKDL.Frame(PyKDL.Rotation.Quaternion(t.transform.rotation.x, t.transform.rotation.y,
-                                                 t.transform.rotation.z, t.transform.rotation.w),
-                       PyKDL.Vector(t.transform.translation.x,
-                                    t.transform.translation.y,
-                                    t.transform.translation.z))
-
-def do_transform_pose(pose, transform):
-    f = transform_to_kdl(transform) * PyKDL.Frame(PyKDL.Rotation.Quaternion(pose.pose.orientation.x, pose.pose.orientation.y,
-                                                                          pose.pose.orientation.z, pose.pose.orientation.w),
-                                                PyKDL.Vector(pose.pose.position.x, pose.pose.position.y, pose.pose.position.z))
-    res = PoseStamped()
-    res.pose.position.x = f[(0, 3)]
-    res.pose.position.y = f[(1, 3)]
-    res.pose.position.z = f[(2, 3)]
-    (res.pose.orientation.x, res.pose.orientation.y, res.pose.orientation.z, res.pose.orientation.w) = f.M.GetQuaternion()
-    res.header = transform.header
-    return res
 
 class LocalGoal(Node):
     def __init__(self):
@@ -58,7 +37,7 @@ class LocalGoal(Node):
         stampedGoal.pose= self.global_goal
         stampedGoal.header.frame_id= 'odom'
         stampedGoal.header.stamp= currentTime
-        localGoal = do_transform_pose( stampedGoal, stampedTransform )
+        localGoal = tf2_geometry_msgs.do_transform_pose( stampedGoal, stampedTransform )
         # Publish
         self.goalPublisher.publish(localGoal)
 
