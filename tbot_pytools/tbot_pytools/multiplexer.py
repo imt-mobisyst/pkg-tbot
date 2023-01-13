@@ -75,31 +75,3 @@ def multiplexer(args=None):
     # Clean end
     node.destroy_node()
     rclpy.shutdown()
-
-def multiplexer(args=None):
-    # Initialize ROS
-    rclpy.init(args=args)
-
-    # Initialize ScanInterperter
-    node = Multiplexer()
-    
-    # infinite Loop
-    rclpy.spin(node)
-    
-    # Clean end
-    node.destroy_node()
-    rclpy.shutdown()
-
-def multiplexer(args=None):
-    # Initialize ROS
-    rclpy.init(args=args)
-
-    # Initialize ScanInterperter
-    node = Multiplexer()
-    
-    # infinite Loop
-    rclpy.spin(node)
-    
-    # Clean end
-    node.destroy_node()
-    rclpy.shutdown()

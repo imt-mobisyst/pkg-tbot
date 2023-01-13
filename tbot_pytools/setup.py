@@ -6,6 +6,7 @@ setup(
     name=package_name,
     version='0.0.0',
     packages=[package_name],
+    requires=['rospy','geometry_msgs','tf2_ros','tf2_geometry_msgs'],
     data_files=[
         ('share/ament_index/resource_index/packages',
             ['resource/' + package_name]),
@@ -23,6 +24,7 @@ setup(
             'multiplexer = tbot_pytools.multiplexer:multiplexer',
             'rmove = tbot_pytools.reactive_move:move',
             'camera = tbot_pytools.realsense:process_img',
+            'goal_keeper = tbot_pytools.localGoal:process_keeper'
         ],
     },
 )
