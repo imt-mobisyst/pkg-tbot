@@ -24,7 +24,8 @@ setup(
             'multiplexer = tbot_pytools.multiplexer:multiplexer',
             'rmove = tbot_pytools.reactive_move:move',
             'camera = tbot_pytools.realsense:process_img',
-            'goal_keeper = tbot_pytools.localGoal:process_keeper'
+            'goal_keeper = tbot_pytools.posetransform:process_keeper',
+            'tf_tester = tbot_pytools.posetransform:process_test'
         ],
     },
 )

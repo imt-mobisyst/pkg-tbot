@@ -19,7 +19,7 @@ echo "##--------------------------------------"
 sudo apt update
 
 #### Ros 2
-sudo apt install -y ros-foxy-desktop ros-dev-tools #ros-foxy-ros-base for a more basic vertion, in Pi for instance... #ros-foxy-... # on 2022 machine...
+sudo apt install -y ros-foxy-desktop ros-dev-tools ament-cmake-python #ros-foxy-ros-base for a more basic vertion, in Pi for instance... #ros-foxy-... # on 2022 machine...
 
 echo "## ROS2 advanced deps"
 sudo apt install -y \
