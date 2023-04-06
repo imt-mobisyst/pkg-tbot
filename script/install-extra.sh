@@ -6,16 +6,10 @@ echo "##----------------------------"
 
 sudo apt install -y libopencv-dev python3-opencv
 
-# Make dependencies' directory:
-if [[ ! -d dpd ]]
-then
-    mkdir dpd
-fi
-cd dpd
-
 # Clone and initialize vcpkg:
 echo "## Install vcpkg"
 echo "##----------------------------"
+
 cd 
 
 git clone https://github.com/Microsoft/vcpkg.git .vcpkg
@@ -39,5 +33,5 @@ pip3 install pyrealsense2
 echo "# Install urg_node and grant access"
 echo "#----------------------------------"
 
-sudo apt install -y ros-foxy-urg-node
+sudo apt install -y ros-$ROS_DISTRO-urg-node
 sudo usermod -a -G dialout `whoami`

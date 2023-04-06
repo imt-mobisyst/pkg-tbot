@@ -32,7 +32,7 @@ if(BUILD_TESTING)
   ament_lint_auto_find_test_dependencies()
 endif()
 
-# Install some scripts:
+# Install homemade nodes:
 install(PROGRAMS bin/start_base DESTINATION lib/${PROJECT_NAME} RENAME start_base)
 
 # Install launch files.
