@@ -1,7 +1,9 @@
 #!/bin/bash
 
-# Get some dependencies:
+# Go at the root directory of the project 
+cd `dirname $0`/..
 
+# Get some dependencies:
 export ROSDISTRO=iron
 sudo apt install -y\
     ros-$ROSDISTRO-ecl-command-line\
@@ -13,7 +15,7 @@ sudo apt install -y\
     ros-$ROSDISTRO-urg-node
 
 # configure udev to recognize kobuki robot:
-sudo cp ./kobuki_core/60-kobuki.rules /lib/udev/rules.d/
+sudo cp ./kobuki_core/60-kobuki.rules /etc/udev/rules.d/
 sudo usermod -a -G dialout `whoami`
 
 ./bin/build.sh

@@ -41,6 +41,19 @@ You can build, and configure your shell with the new elelements:
 source ../install/setup.bash
 ```
 
+# Get started
+
+the node `kobuki_ros_node` from `kobuki_node` match the minimal control node and require to specify how to 'phisically' communicate with the robot (i.e usb entrance point remaped as kobuki in udev rules).
+
+```sh
+# In a first terminal
+ros2 run kobuki_node kobuki_ros_node --ros-args -p device_port:=/dev/kobuki
+
+# In a seond terminal
+ros2 topic list
+```
+
+
 # FAQ
 
 ## view_frames
