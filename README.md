@@ -21,11 +21,11 @@ Those dependancies have some comflics easely removable by removing `set(CMAKE_NO
 
 ## Installation
 
-To notice the existnce of an [install](./bin/install.sh) script.
+To notice the existnce of an [install](./bin/install) script.
 
 Like we said, kobuki and then **tbot** relies on some `ecl` packages. 
 The robot also need the `urg_node` form the ROS `urg_node` package for the laser range.
-See [install](./bin/install.sh) script for a detailled list of packages to install.
+See [install](./bin/install) script for a detailled list of packages to install.
 
 Now you have to configure `udev` to recognize kobuki robot and permits the user to access laser data.
 
@@ -37,7 +37,7 @@ sudo usermod -a -G dialout `whoami`
 You can build, and configure your shell with the new elelements: 
 
 ```sh
-./bin/build.sh
+./bin/build
 source ../install/setup.bash
 ```
 
