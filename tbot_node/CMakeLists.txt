@@ -23,4 +23,14 @@ if(BUILD_TESTING)
   ament_lint_auto_find_test_dependencies()
 endif()
 
+# Python scripts
+#install( DIRECTORY scripts/myPythonPkg DESTINATION lib/${PROJECT_NAME})
+install( PROGRAMS scripts/multiplexer DESTINATION lib/${PROJECT_NAME})
+
+# Install launch files.
+install(DIRECTORY
+  launch urdf
+  DESTINATION share/${PROJECT_NAME}/
+)
+
 ament_package()

@@ -6,6 +6,7 @@ cd `dirname $0`/..
 # Get some dependencies:
 export ROSDISTRO=iron
 sudo apt install -y\
+    ros-$ROSDISTRO-angles\
     ros-$ROSDISTRO-ecl-command-line\
     ros-$ROSDISTRO-ecl-console\
     ros-$ROSDISTRO-ecl-devices\
@@ -17,5 +18,3 @@ sudo apt install -y\
 # configure udev to recognize kobuki robot:
 sudo cp ./kobuki_core/60-kobuki.rules /etc/udev/rules.d/
 sudo usermod -a -G dialout `whoami`
-
-./bin/build
