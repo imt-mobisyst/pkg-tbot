@@ -4,6 +4,7 @@ dpd/vcpkg
 # DIY:
 *.FCStd1
 diy/*.stl
+diy/*.gcode
 
 # Node artifact files
 node_modules/

@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+
+# Go at the root directory of the project 
+
+cd `dirname $0`/../..
+echo "# Install target: $PWD/install"
+echo "#--------------------------------------------------------------------"
+
+echo "
+$PWD/install
+"
+
+echo "# Go build"
+echo "#--------------------------------------------------------------------"
+cd ..
+colcon build --packages-select kobuki_core --event-handlers console_direct+
+colcon build --packages-select kobuki_ros_interfaces --event-handlers console_direct+
+colcon build --packages-select kobuki_ros --event-handlers console_direct+
+colcon build --packages-select kobuki_node --event-handlers console_direct+
+colcon build --packages-select tbot_node --event-handlers console_direct+
+
+# Debugs:
+
+# colcon build --packages-select my_pkg --event-handlers console_direct+
+# 
+# As an alternative, it the package has already been built and cmake uses make,
+# one can just go to the build directory and invoke make directly
+# 
+# cd build/my_pkg
+# make

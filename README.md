@@ -2,64 +2,108 @@
 
 This project is a ROS package that includes usefull elements for turtlebot2 robots in the IMT Nord-Europe configuration (**tbot**).
 
-Last system version: **Ubuntu 20.04 lts** / **ROS1 neotic** + **ROS2 foxy** 
+Last system version: **Ubuntu 22.04 lts** / **ROS2 iron** 
 
-Also, **tbot** is designed to work on a Raspberry-Pi3.
-To configure the Pi3 before to install **tbot**, please refers to [mb6-playload](https://www.bitbucket.org/imt-mobisyst/mb6-playload) project.
+Also, **tbot** is designed to work on a Raspberry-Pi3 (pibotXX configuration).
+To configure the Pi3 before to install **tbot**, please refers to [mb6-space](https://www.bitbucket.org/imt-mobisyst/mb6-space) project.
 Otherwise you can overpass this step.
+
+
+**tbot** is developped on top of `kobuki`. 
+Used materials can be found by cloning those repos: 
+
+- [kobuki_core](https://github.com/kobuki-base/kobuki_core)
+- [kobuki_ros](https://github.com/kobuki-base/kobuki_ros)
+- [kobuki_ros_interfaces](https://github.com/kobuki-base/kobuki_ros_interfaces)
+
+However, initial `kobuki` relies on `ecl` packages and indirectly on `sophus` package. 
+Those dependancies have some comflics easely removable by removing `set(CMAKE_NO_SYSTEM_FROM_IMPORTED TRUE)` in the instruction list of kobuki CMake files.
 
 ## Installation
 
-The **tbot** project requires several dependencies mostly relying on Docker and ROS to load turtlebot-kobuki ROS driver in a virtual environment and add some usefull ROS packages (laser, ros2-bridge...). 
+To notice the existnce of an [install](./bin/install) script.
 
-However to shortcut the installation process you can execute the install script (supose that ROS Neotic is already installed): 
+Like we said, kobuki and then **tbot** relies on some `ecl` packages. 
+The robot also need the `urg_node` form the ROS `urg_node` package for the laser range.
+See [install](./bin/install) script for a detailled list of packages to install.
 
-**Full install:** [./script/install-full.sh](script/install-full.sh)
-
-From a fresh Ubuntu 20.04 instal, you can just execute the following commands in your favorit shell:
-
-```sh
-sudo apt update
-sudo apt install openssh-server curl
-# Potentially: log with ssh, then
-curl -k https://bitbucket.org/imt-mobisyst/mb6-tbot/raw/master/script/install-full.sh | bash
-```
-
-This script will install dependencies, configure git, clone the repo, generate the docker image and compile the **tbot** packages.
-
-**In short:**
-
-If the environnement is already set (ROS etc...), you can just clone and build the project as a ROS package.
+Now you have to configure `udev` to recognize kobuki robot and permits the user to access laser data.
 
 ```sh
-git clone https://bitbucket.org/imt-mobisyst/mb6-tbot pkg-tbot
-cd pkg-tbot
-./script/build.sh
+sudo cp ./kobuki_core/60-kobuki.rules /lib/udev/rules.d/
+sudo usermod -a -G dialout `whoami`
 ```
 
-**In detail:** 
+You can build, and configure your shell with the new elelements: 
 
-A manual detailled install porcedure is proposed here: [./docs/install.md](docs/install.md).
+```sh
+./bin/build
+source ../install/setup.bash
+```
 
+# Get started
 
-## Getting started
+The node `kobuki_ros_node` from `kobuki_node` match the minimal control node and require to specify how to 'phisically' communicate with the robot (i.e usb entrance point remaped as kobuki in udev rules).
 
-Test kobuki (with laser): 
+```sh
+# In a first terminal
+ros2 run kobuki_node kobuki_ros_node --ros-args -p device_port:=/dev/kobuki
 
-1. Update your shell environnement (in `ros2_ws`): `source /opt/ros/foxy/setup.bash && colcon build && source install/setup.bash`
-2. Connect and switch-on the turtlebot-kobuki
-3. Start the docker in a $1st$ terminal: `ros2 run tbot_start start`
-4. Start the hokuyo-laser driver in a $2d$ terminal: `source /opt/ros/foxy/setup.bash & ros2 run urg_node urg_node_driver --ros-args -p serial_port:=/dev/ttyACM0`
-5. Launch a bridge between ROS1 and ROS2 in a $3d$ terminal: `source /opt/ros/noetic/setup.bash & source /opt/ros/foxy/setup.sh & ros2 run ros1_bridge dynamic_bridge`
-6. Teleop the robot, in a $4th$ terminal: `source /opt/ros/foxy/setup.bash & ros2 run teleop_twist_keyboard teleop_twist_keyboard --ros-args --remap cmd_vel:=/mobile_base/commands/velocity`
-7. Stop processes (in each terminal: `ctrl-c`).
+# In a seond terminal
+ros2 topic list
+```
 
-Test Simulation (with ros1/2 bridge):
+Several launch file in `tbot_node` package permit to start the robot with complete configuration (laser, transforms, safe multiplexer).
 
-1. Update your shell environnement (in `ros1_ws`): `source /opt/ros/noetic/setup.bash && catkin_make && source devel/setup.bash`
-2. Start a gazebo simulation in a $1st$ terminal: `roslaunch larm challenge-1.launch`
-3. Launch a bridge between ROS1 and ROS2 in a $2d$ terminal: `source /opt/ros/noetic/setup.bash & source /opt/ros/foxy/setup.sh & ros2 run ros1_bridge dynamic_bridge`
-4. Sartr `rviz2` in a $3d$ terminal and connect laserScan on the `\scan` topic refering the `\laser_sensor_link` frame
-5. Stop processes (in each terminal: `ctrl-c`).
+Take the control:
 
+```sh
+ros2 run teleop_twist_keyboard teleop_twist_keyboard --ros-args -r /cmd_vel:=/multi/cmd_teleop
+```
 
+# FAQ
+
+## view_frames
+
+There is a known bug in noetic: https://github.com/ros/geometry/pull/193
+
+```
+$ rosrun tf view_frames
+Listening to /tf for 5.0 seconds
+Done Listening
+b'dot - graphviz version 2.43.0 (0)\n'
+Traceback (most recent call last):
+  File "/opt/ros/noetic/lib/tf/view_frames", line 119, in <module>
+    generate(dot_graph)
+  File "/opt/ros/noetic/lib/tf/view_frames", line 89, in generate
+    m = r.search(vstr)
+TypeError: cannot use a string pattern on a bytes-like object
+```
+
+Line 89 of `/opt/ros/noetic/lib/tf/view_frames`:
+
+```python
+m = r.search(vstr.decode('utf-8'))
+```
+
+```
+sudo sed -i 's/m = r.search(vstr)/m = r.search(vstr.decode("utf-8"))/' /opt/ros/noetic/lib/tf/view_frames
+```
+
+## python error
+
+Certains scripts utilisent :
+
+```python
+#!/usr/bin/env python
+```
+
+or `python` n'existe plus en ubuntu 20.04 et il faut privilégier l'utilisation explicite de python3 :
+
+```python
+#!/usr/bin/env python3
+```
+
+# TODO
+
+- tbot rgbd visual model broken in rviz
