@@ -19,8 +19,3 @@ sudo apt install -y\
 # configure udev to recognize kobuki robot:
 sudo cp ./kobuki_core/60-kobuki.rules /etc/udev/rules.d/
 sudo usermod -a -G dialout `whoami`
-
-
-echo "# Tools"
-echo "#----------------------------"
-sudo dpkg -i dpd/code_1.73.1-1667967334_amd64.deb
