@@ -23,14 +23,9 @@ if(BUILD_TESTING)
   ament_lint_auto_find_test_dependencies()
 endif()
 
-<<<<<<< HEAD:tbot_start/CMakeLists.txt
-# Install homemade nodes:
-install(PROGRAMS bin/start_base DESTINATION lib/${PROJECT_NAME} RENAME start_base)
-=======
 # Python scripts
 #install( DIRECTORY scripts/myPythonPkg DESTINATION lib/${PROJECT_NAME})
 install( PROGRAMS scripts/multiplexer DESTINATION lib/${PROJECT_NAME})
->>>>>>> dev:tbot_node/CMakeLists.txt
 
 # Install launch files.
 install(DIRECTORY
