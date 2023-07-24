@@ -43,21 +43,32 @@ source ../install/setup.bash
 
 # Get started
 
-The node `kobuki_ros_node` from `kobuki_node` match the minimal control node and require to specify how to 'phisically' communicate with the robot (i.e usb entrance point remaped as kobuki in udev rules).
+The node `kobuki_ros_node` from `kobuki_node` match the minimal control node to communicate with the robot sensors and actuators (i.e  through the USB entrance point remapped as kobuki in udev rules).
 
 ```sh
 # In a first terminal
 ros2 run kobuki_node kobuki_ros_node --ros-args -p device_port:=/dev/kobuki
 
 # In a seond terminal
-ros2 topic list
+ros2 topic list 
+# Ctrl-c
+ros2 run teleop_twist_keyboard teleop_twist_keyboard --ros-args -r /cmd_vel:=/commands/velocity
 ```
 
-Several launch file in `tbot_node` package permit to start the robot with complete configuration (laser, transforms, safe multiplexer).
-
-Take the control:
+Launch files in `tbot_node` package permit to start the robot with complete configuration (laser, transforms and safe multiplexer).
 
 ```sh
+# In a first terminal
+ros2 launch tbot_node minimal_launch.yaml
+```
+
+
+From that point it is preferable to sent command instruction into `/multi/cmd_nav` or `/multi/cmd_teleop` (operator teleop get an higher priority)
+
+```sh
+# In a seond terminal
+ros2 topic list 
+# Ctrl-c
 ros2 run teleop_twist_keyboard teleop_twist_keyboard --ros-args -r /cmd_vel:=/multi/cmd_teleop
 ```
 
