@@ -27,7 +27,7 @@ endif()
 #install( DIRECTORY scripts/myPythonPkg DESTINATION lib/${PROJECT_NAME})
 install( PROGRAMS scripts/multiplexer DESTINATION lib/${PROJECT_NAME})
 
-# Install launch files.
+# Install resources :
 install(DIRECTORY
   launch urdf
   DESTINATION share/${PROJECT_NAME}/

@@ -3,21 +3,12 @@
 # Go at the root directory of the project 
 
 cd `dirname $0`/../..
-echo "# Install target: $PWD/install"
+
+echo "# Build (target: $PWD/install)"
 echo "#--------------------------------------------------------------------"
 
-echo "
-$PWD/install
-"
-
-echo "# Go build"
-echo "#--------------------------------------------------------------------"
-cd ..
-colcon build --packages-select kobuki_core --event-handlers console_direct+
-colcon build --packages-select kobuki_ros_interfaces --event-handlers console_direct+
-colcon build --packages-select kobuki_ros --event-handlers console_direct+
-colcon build --packages-select kobuki_node --event-handlers console_direct+
-colcon build --packages-select tbot_node --event-handlers console_direct+
+colcon build --packages-select kobuki_core kobuki_ros_interfaces kobuki_ros kobuki_node
+colcon build --packages-select tbot_node
 
 # Debugs:
 
