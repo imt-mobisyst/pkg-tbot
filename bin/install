@@ -5,16 +5,16 @@ cd `dirname $0`/..
 echo $PWD
 
 # Get some dependencies:
-export ROSDISTRO=iron
 sudo apt install -y\
-    ros-$ROSDISTRO-angles\
-    ros-$ROSDISTRO-ecl-command-line\
-    ros-$ROSDISTRO-ecl-console\
-    ros-$ROSDISTRO-ecl-devices\
-    ros-$ROSDISTRO-ecl-geometry\
-    ros-$ROSDISTRO-ecl-mobile-robot\
-    ros-$ROSDISTRO-ecl-sigslots\
-    ros-$ROSDISTRO-urg-node
+    ros-$ROS_DISTRO-angles\
+    ros-$ROS_DISTRO-ecl-command-line\
+    ros-$ROS_DISTRO-ecl-console\
+    ros-$ROS_DISTRO-ecl-devices\
+    ros-$ROS_DISTRO-ecl-geometry\
+    ros-$ROS_DISTRO-ecl-mobile-robot\
+    ros-$ROS_DISTRO-ecl-sigslots\
+    ros-$ROS_DISTRO-ecl-threads\
+    ros-$ROS_DISTRO-urg-node
 
 # configure udev to recognize kobuki robot:
 sudo cp ./kobuki_core/60-kobuki.rules /etc/udev/rules.d/
