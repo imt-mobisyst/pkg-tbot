@@ -15,7 +15,7 @@ sudo apt install -y xterm\
     ros-$ROS_DISTRO-ecl-sigslots\
     ros-$ROS_DISTRO-ecl-threads\
     ros-$ROS_DISTRO-urg-node\
-    ros-$ROS_DISTRO-teleop-twist-keyboard
+    ros-$ROS_DISTRO-ros-iron-teleop-twist-keyboard
 
 # configure udev to recognize kobuki robot:
 sudo cp ./kobuki_core/60-kobuki.rules /etc/udev/rules.d/
