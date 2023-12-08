@@ -5,7 +5,7 @@ cd `dirname $0`/..
 echo $PWD
 
 # Get some dependencies:
-sudo apt install -y\
+sudo apt install -y xterm\
     ros-$ROS_DISTRO-angles\
     ros-$ROS_DISTRO-ecl-command-line\
     ros-$ROS_DISTRO-ecl-console\
@@ -14,7 +14,8 @@ sudo apt install -y\
     ros-$ROS_DISTRO-ecl-mobile-robot\
     ros-$ROS_DISTRO-ecl-sigslots\
     ros-$ROS_DISTRO-ecl-threads\
-    ros-$ROS_DISTRO-urg-node
+    ros-$ROS_DISTRO-urg-node\
+    ros-$ROS_DISTRO-teleop-twist-keyboard
 
 # configure udev to recognize kobuki robot:
 sudo cp ./kobuki_core/60-kobuki.rules /etc/udev/rules.d/

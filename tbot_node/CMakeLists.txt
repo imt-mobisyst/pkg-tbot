@@ -29,7 +29,7 @@ install( PROGRAMS scripts/multiplexer DESTINATION lib/${PROJECT_NAME})
 
 # Install resources :
 install(DIRECTORY
-  launch urdf
+  launch urdf rviz
   DESTINATION share/${PROJECT_NAME}/
 )
 
