@@ -28,7 +28,7 @@ launch:
       name: "use_sim_time"
       value: False
 - node:
-    pkg: "tbot_node"
+    pkg: "mb6_basic"
     exec: "multiplexer"
     name: "multiplexer"
     remap:
