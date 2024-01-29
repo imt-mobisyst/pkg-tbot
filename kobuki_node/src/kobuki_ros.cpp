@@ -219,7 +219,7 @@ KobukiRos::KobukiRos(const rclcpp::NodeOptions & options) : rclcpp::Node("kobuki
   std::string odom_frame = this->declare_parameter("odom_frame", std::string("odom"));
   RCLCPP_INFO(get_logger(), "Kobuki : using odom_frame [%s].", odom_frame.c_str());
 
-  std::string base_frame = this->declare_parameter("base_frame", std::string("base"));
+  std::string base_frame = this->declare_parameter("base_frame", std::string("base_footprint"));
   RCLCPP_INFO(get_logger(), "Kobuki : using base_frame [%s].", base_frame.c_str());
 
   bool publish_tf = this->declare_parameter("publish_tf", true);
