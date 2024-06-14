@@ -61,5 +61,5 @@ launch:
     remap:
      - 
         from: "cmd_vel"
-        to: "/multi/cmd_teleop"
+        to: "multi/cmd_teleop"
 
