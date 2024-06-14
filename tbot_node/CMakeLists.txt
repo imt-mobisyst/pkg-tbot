@@ -24,8 +24,7 @@ if(BUILD_TESTING)
 endif()
 
 # Python scripts
-#install( DIRECTORY scripts/myPythonPkg DESTINATION lib/${PROJECT_NAME})
-install( PROGRAMS scripts/multiplexer DESTINATION lib/${PROJECT_NAME})
+#install( DIRECTORY scripts/myPythonExec DESTINATION lib/${PROJECT_NAME})
 
 # Install resources :
 install(DIRECTORY
