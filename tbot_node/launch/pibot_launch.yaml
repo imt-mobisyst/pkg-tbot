@@ -1,5 +1,13 @@
 launch:
 
+# Lidar angle
+- arg:
+    name: "a_min"
+    default: -2.356194496154785
+- arg:
+    name: "a_max"
+    default: 2.0923497676849365
+
 # Kobuki Driver:
 - node:
     pkg: "kobuki_node"
@@ -22,6 +30,12 @@ launch:
     - 
       name: "laser_frame_id"
       value: "laser_link"
+    -
+      name: "angle_min"
+      value: "$(var a_min)"
+    -
+      name: "angle_max"
+      value: "$(var a_max)"
 
 # State publisher:
 - node: 
