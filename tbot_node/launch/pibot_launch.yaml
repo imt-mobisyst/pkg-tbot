@@ -3,10 +3,10 @@ launch:
 # Lidar angle
 - arg:
     name: "a_min"
-    default: -2.356194496154785
+    default: "-2.356194496154785"
 - arg:
     name: "a_max"
-    default: 2.0923497676849365
+    default: "2.0923497676849365"
 
 # Kobuki Driver:
 - node:
