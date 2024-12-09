@@ -29,7 +29,7 @@ docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
 cd
 git clone git@bitbucket.org:imt-mobisyst/mb6-space.git
 
-docker run -it --name ros2arm -v /usr/bin/qemu-arm-static:/usr/bin/qemu-arm-static  -v `pwd`/mb6-space:/root/mb6-space arm64v8/ros:iron bash
+docker run -it --name ros2arm -v /usr/bin/qemu-arm-static:/usr/bin/qemu-arm-static  -v `pwd`/mb6-space:/root/mb6-space --platform linux/arm64  arm64v8/ros:iron bash
 
 sudo apt update
 sudo apt install -y \
