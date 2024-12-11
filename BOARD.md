@@ -48,12 +48,24 @@ sudo apt install -y \
 
 echo "export PYTHONPATH='/opt/ros/iron/lib/python3.10/site-packages'" >> ../.bashrc
 source ~/.bashrc
+```
 
+Before compiling, you should fix the line 255 of `/opt/ros/iron/ecl_build/cmake/ecl_platform_detection.cmake`
+(cf. https://github.com/stonier/ecl_tools/pull/12/files):
+
+```
+- include(FindThreads)
++ find_package(Threads)
+```
+
+Then, compile :
+
+```
+cd ~/mb6-space
 # [OK] colcon build --packages-select kobuki_core
 # [OK] colcon build --packages-select kobuki_ros_interfaces
 # [OK] colcon build --packages-select kobuki_node kobuki_ros
 colcon build
 ```
 
-export it using overlay or
-<!-- rsync -av ROSWS/install/YOURPACKAGE/* /opt/ros/iron/ should work  -->
+Compiled packages are in `~/mb6-space/install` and can be deployed elsewhere (on pi)
