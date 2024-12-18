@@ -8,16 +8,21 @@ Also, **tbot** is designed to work on a Raspberry-Pi3 (pibotXX configuration).
 To configure the Pi3 before to install **tbot**, please refers to [mb6-space](https://www.bitbucket.org/imt-mobisyst/mb6-space) project.
 Otherwise you can overpass this step.
 
-
 **tbot** is developped on top of `kobuki`. 
 Used materials can be found by cloning those repos: 
 
 - [kobuki_core](https://github.com/kobuki-base/kobuki_core)
 - [kobuki_ros](https://github.com/kobuki-base/kobuki_ros)
-- [kobuki_ros_interfaces](https://github.com/kobuki-base/kobuki_ros_interfaces)
+
+Those packages rely on :
+
+- [kobuki_ros_interfaces](https://github.com/kobuki-base/kobuki_ros_interfaces) forked on [imt-mobisyst/pkg-interfaces](https://github.com/imt-mobisyst/pkg-interfaces)
+
 
 However, initial `kobuki` relies on `ecl` packages and indirectly on `sophus` package. 
 Those dependancies have some comflics easely removable by removing `set(CMAKE_NO_SYSTEM_FROM_IMPORTED TRUE)` in the instruction list of kobuki CMake files.
+
+
 
 ## Installation
 
